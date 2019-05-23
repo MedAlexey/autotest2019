@@ -1,6 +1,6 @@
 package pages;
 
-public interface ProductPage {
+public interface IProductPage {
 
     String title = null;
     String size = null;
