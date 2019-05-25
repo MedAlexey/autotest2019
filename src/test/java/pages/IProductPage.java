@@ -6,8 +6,6 @@ public interface IProductPage {
     String size = null;
     String color = null;
 
-    // добавить в закладки
-    void addToBookmark();
 
     // добавить в корзину
     void addToCart();
@@ -15,26 +13,29 @@ public interface IProductPage {
     // выбрать размер
     void chooseSize();
 
-    //выбрать кол-во
-    void chooseQuantity();
+    // увеличить количество
+    void increaseQuantity();
+
+    // уменьшить количество
+    void decreaseQuantity();
 
     // выбрать цвет
     void chooseColor();
 
     // поделиться в группе
-    void shareInGroup();
+    ShareInGroupFrame shareInGroup();
 
     // поделиться с текстом
-    void shareWithText();
+    ShareWithTextFrame shareWithText();
 
     // поделиться сейчас
     void shareNow();
 
     // поделиться в сообщении
-    void shareInMessage();
+    ShareWithMessageFrame shareInMessage();
 
     // проверить наличие кнопки "Получить скидку 5%"
-    void checkFivePercentDiscount();
+    FivePercentDiscountPromice checkFivePercentDiscount();
 
     // обновить страницу
     void refresh();
