@@ -23,6 +23,7 @@ public class LoginPage extends BasePage {
         return new UserMainPage(driver);
     }
 
+    //Добавить ожидание
     @Override
     void check(WebDriver driver) {
         driver.findElement(LOGIN_CARD_LOCATOR);
