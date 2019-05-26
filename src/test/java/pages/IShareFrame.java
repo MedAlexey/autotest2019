@@ -3,10 +3,10 @@ package pages;
 public interface IShareFrame {
 
     // закрыть окно
-    IProductPage closeFrame();
+    void closeFrame();
 
     // нажать кнопку "поделиться"
-    IProductPage share();
+    void share();
 
     // написать текст
     void writeText(String text);
