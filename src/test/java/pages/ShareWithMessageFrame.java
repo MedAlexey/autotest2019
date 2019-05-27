@@ -8,6 +8,7 @@ public class ShareWithMessageFrame extends BasePage implements IShareFrame {
     private static final By PORTLET_NAME = By.xpath(".//*[@class='portlet_h_name_t']");
     private static final By CLOSE_ICON = By.xpath(".//*[@class='ic modal-new_close_ico']");
     private static final By POSTING_SUBMIT_BUTTON = By.xpath(".//*[@class='posting_submit button-pro']");
+    private static final By SEARCH_INPUT = By.xpath(".//*[@class='it_w search-input']");
     private static final By TEXT_HOLDER =
             By.xpath(".//*[@class='posting_itx emoji-tx h-mod js-ok-e js-posting-itx ok-posting-handler']");
 
@@ -16,6 +17,7 @@ public class ShareWithMessageFrame extends BasePage implements IShareFrame {
     }
 
     public void choosePerson(String name) {
+        driver.findElement(SEARCH_INPUT).click();
         driver.findElement(
                 By.xpath(".//*[@class='ucard-mini_cnt_i ellip' and contains(text(), '" + name + "')]")).click();
     }
