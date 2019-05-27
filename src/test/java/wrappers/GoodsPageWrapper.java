@@ -23,9 +23,9 @@ public class GoodsPageWrapper {
         return cardProduct.findElement(CARD_NAME).getText();
     }
 
-    public ProductPage openProduct(){
+    public ProductPageFrame openProduct(){
         cardProduct.findElement(CARD_NAME).click();
-        return new ProductPage(driver);
+        return new ProductPageFrame(driver);
     }
 
 }
