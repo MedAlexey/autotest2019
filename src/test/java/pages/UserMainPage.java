@@ -1,3 +1,5 @@
+//Добавить ожидания, безопасные клики
+
 package pages;
 
 import org.openqa.selenium.By;
