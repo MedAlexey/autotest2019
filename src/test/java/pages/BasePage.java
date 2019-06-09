@@ -23,7 +23,7 @@ public abstract class BasePage {
 
     boolean isElementPresent(By element) {
         try {
-            driver.findElement(element);
+            driver.findElement(element).isDisplayed();
             return true;
         } catch (NoSuchElementException e) {
             return false;
