@@ -1,7 +1,10 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ShareInGroupFrame extends BasePage implements IShareFrame {
 
@@ -17,31 +20,49 @@ public class ShareInGroupFrame extends BasePage implements IShareFrame {
         super(driver);
     }
 
+    // выбор группы, в которую будем "делиться"
     public void chooseGroup(String groupName) {
-        driver.findElement(SEARCH_INPUT).click();
+        click(SEARCH_INPUT);
         driver.findElement(
                 By.xpath(".//*[@class='ucard-mini_cnt_i ellip' and contains(text(), '" + groupName + "')]")).click();
     }
 
     @Override
     void check(WebDriver driver) {
-        driver.findElement(PORTLET_NAME);
-        driver.findElement(CLOSE_ICON);
-        driver.findElement(POSTING_SUBMIT_BUTTON);
-        driver.findElement(SEARCH_INPUT);
-        driver.findElement(TEXT_HOLDER);
+        Assert.assertTrue( "Не дождались названия фрейма",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(PORTLET_NAME)));
+
+        Assert.assertTrue( "Не дождались кнопки \"закрыть\"",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(CLOSE_ICON)));
+
+        Assert.assertTrue( "Не дождались кнопки \"поделиться\"",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(POSTING_SUBMIT_BUTTON)));
+
+        Assert.assertTrue( "Не дождались поля выбора группы",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(SEARCH_INPUT)));
+
+        Assert.assertTrue( "Не дождались поля вводе комментария",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(TEXT_HOLDER)));
     }
 
+    // закрыть фрейм
     @Override
     public void closeFrame() {
         click(CLOSE_ICON);
     }
 
+    // нажать кнопку "поделиться"
     @Override
     public void share() {
         click(POSTING_SUBMIT_BUTTON);
     }
 
+    // написать текст
     @Override
     public void writeText(String text) {
         sendKeys(TEXT_HOLDER, text);
