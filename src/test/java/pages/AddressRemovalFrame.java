@@ -11,6 +11,7 @@ public class AddressRemovalFrame extends BasePage {
         super(driver);
     }
 
+    //нажимаем кнопку "удалить"
     public AddressesPage deleteAddress(){
         click(DELETE_BUTTON);
         return new AddressesPage(driver);
