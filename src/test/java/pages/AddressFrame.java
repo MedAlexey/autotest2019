@@ -1,7 +1,11 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class AddressFrame extends BasePage {
 
@@ -60,13 +64,36 @@ public class AddressFrame extends BasePage {
 
     @Override
     void check(WebDriver driver) {
-        driver.findElement(SAVE_BUTTON);
-        driver.findElement(USER_NAME_INPUT_FIELD);
-        driver.findElement(SETTLEMENT_INPUT_FIELD);
-        driver.findElement(HOUSE_NUMBER_INPUT_FIELD);
-        driver.findElement(APARTMENT_INPUT_NUMBER);
-        driver.findElement(INDEX_INPUT_NUMBER);
-        driver.findElement(PHONE_NUMBER_INPUT_FIELD);
-        driver.findElement(CLOSE_BUTTON);
+        Assert.assertTrue( "Не дождались кнопки сохранения",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(SAVE_BUTTON)));
+
+        Assert.assertTrue( "Не дождались поля ввода ФИО",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(USER_NAME_INPUT_FIELD)));
+
+        Assert.assertTrue( "Не дождались поля ввода населённого пункта",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(SETTLEMENT_INPUT_FIELD)));
+
+        Assert.assertTrue( "Не дождались кнопки созданиия новой группы",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(HOUSE_NUMBER_INPUT_FIELD)));
+
+        Assert.assertTrue( "Не дождались поля ввода номера квартиры/офиса",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(APARTMENT_INPUT_NUMBER)));
+
+        Assert.assertTrue( "Не дождались поля ввода индекса",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(INDEX_INPUT_NUMBER)));
+
+        Assert.assertTrue( "Не дождались поля ввода номера телефона",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(PHONE_NUMBER_INPUT_FIELD)));
+
+        Assert.assertTrue( "Не дождались кнопки закрытия фрейма",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(CLOSE_BUTTON)));
     }
 }
