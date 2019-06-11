@@ -23,8 +23,7 @@ public class ShareWithMessageFrame extends BasePage implements IShareFrame {
     // выбираем друга из списка
     public void choosePerson(String name) {
         click(SEARCH_INPUT);
-        driver.findElement(
-                By.xpath(".//*[@class='ucard-mini_cnt_i ellip' and contains(text(), '" + name + "')]")).click();
+        click(By.xpath(".//*[@class='ucard-mini_cnt_i ellip' and contains(text(), '" + name + "')]"));
     }
 
     // закрыть данный фрейм
