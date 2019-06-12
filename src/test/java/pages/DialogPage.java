@@ -43,8 +43,8 @@ public class DialogPage extends BasePage {
 
     //нажимает на кнопку удаления
     public DeleteMessagePage deleteShareMessage(){
-        driver.findElement(DELETE_MENU).click();
-        driver.findElement(DELETE_BUTTON).click();
+        click(DELETE_MENU);
+        click(DELETE_BUTTON);
         return new DeleteMessagePage(driver);
     }
 

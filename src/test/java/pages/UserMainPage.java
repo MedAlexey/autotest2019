@@ -5,6 +5,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.awt.*;
+
 public class UserMainPage extends BasePage {
 
     private static final By GOODS_BUTTON = By.xpath(".//*[@class = 'tico null' and contains(text(),'Товары')]");
@@ -22,9 +24,9 @@ public class UserMainPage extends BasePage {
     }
 
     //открываем страницу с сообщениями
-    public MessagesPage openMessagesPage(){
+    public DialogPage openMessagesPage(){
         click(MESSAGES_BUTTON);
-        return new MessagesPage(driver);
+        return new DialogPage (driver);
     }
 
     //открываем репост товара со стены юзера

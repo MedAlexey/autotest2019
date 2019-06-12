@@ -13,7 +13,7 @@ public class DeleteMessagePage extends BasePage {
 
     //поддверждает удаление
     public DialogPage pressDelete(){
-        driver.findElement(DELETE_BUTTON).click();
+        click(DELETE_BUTTON);
         return new DialogPage(driver);
     }
 

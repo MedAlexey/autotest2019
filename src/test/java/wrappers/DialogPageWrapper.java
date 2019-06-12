@@ -18,10 +18,12 @@ public class DialogPageWrapper {
         this.cardDialog=cardDialog;
     }
 
+    //возвращает название чата
     public String getName(){
         return cardDialog.findElement(NAME_FRIEND).getText();
     }
 
+    //открывает диалог
     public DialogPage openDialog(){
         cardDialog.findElement(FOR_CLICK).click();
         return new DialogPage(driver);
