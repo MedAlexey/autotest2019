@@ -33,7 +33,7 @@ public class MyOrdersPage extends BasePage{
     }
 
     @Override
-    void check(WebDriver driver) {
+    protected void check(WebDriver driver) {
 
     }
 }

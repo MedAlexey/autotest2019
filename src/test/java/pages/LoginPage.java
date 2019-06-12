@@ -25,7 +25,7 @@ public class LoginPage extends BasePage {
 
     //Добавить ожидание
     @Override
-    void check(WebDriver driver) {
+    protected void check(WebDriver driver) {
         driver.findElement(LOGIN_CARD_LOCATOR);
         driver.findElement(LOGIN_LOCATOR);
         driver.findElement(PASSWORD_LOCATOR);
