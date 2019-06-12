@@ -16,7 +16,7 @@ public class ShareWithTextFrame extends BasePage implements IShareFrame {
     }
 
     @Override
-    void check(WebDriver driver) {
+    protected void check(WebDriver driver) {
         driver.findElement(PORTLET_NAME);
         driver.findElement(CLOSE_ICON);
         driver.findElement(POSTING_SUBMIT_BUTTON);

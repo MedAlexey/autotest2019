@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ProductPage extends BasePage implements IProductPage {
+public class ProductPageFrame extends BasePage implements IProductPage {
+
 
     private static final By ADD_TO_CART_BUTTON = By.className("js-mall-card-button-to-basket");
     private static final By BUY_BUTTON = By.className("js-mall-card-button-buy");
     private static final By MALL_CARD = By.className("mall-card_section");
-    private static final By SHARE_BUTTON = By.xpath(".//*[@data-type='RESHARE']");
+    private static final By SHARE_BUTTON = By.xpath(".//*[@title='Поделиться' and @data-l='t,reshareOverProduct']");
     private static final By SHARE_NOW_BUTTON = By.xpath(".//*[@data-l='t,now']");
     private static final By SHARE_IN_GROUP = By.xpath(".//*[@data-l='t,group']");
     private static final By SHARE_WITH_FEED = By.xpath(".//*[@data-l='t,feed']");
@@ -32,9 +33,11 @@ public class ProductPage extends BasePage implements IProductPage {
     private static final By PRODUCT_SIZE_WORD = By.xpath(".//*[@class='mall-title __bold' and contains(text(), 'Размер:')]");
     // юнит, отвечающий за определённый размер товара
     private static final By PRODUCT_SIZE_ITEM = By.xpath(".//*[@class='mall-card_label-el __size']");
+    // кнопка "добавить в закладки"
+    private static final By ADD_TO_BOOKMARKS_BUTTON = By.xpath(".//*[@title='Добавить в закладки']");
 
 
-    public ProductPage(WebDriver driver) {
+    public ProductPageFrame(WebDriver driver) {
         super(driver);
     }
 
@@ -194,6 +197,11 @@ public class ProductPage extends BasePage implements IProductPage {
         return null;
     }
 
+    // добавление товара в закладки
+    public void addToBookmarks() {
+        click(ADD_TO_BOOKMARKS_BUTTON);
+    }
+
     @Override
     protected void check(WebDriver driver) {
         Assert.assertTrue( "Не дождались кнопки \"купить\"",
@@ -220,5 +228,11 @@ public class ProductPage extends BasePage implements IProductPage {
         Assert.assertTrue( "Не дождались кнопки уменьшения количества товара",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(DECREASE_QUANTITY_BUTTON)));
+
+        Assert.assertTrue( "Не дождались кнопки \"добавить в закладки\"",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(ADD_TO_BOOKMARKS_BUTTON)));
     }
+
+
 }

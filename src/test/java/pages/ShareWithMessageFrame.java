@@ -46,7 +46,7 @@ public class ShareWithMessageFrame extends BasePage implements IShareFrame {
     }
 
     @Override
-    void check(WebDriver driver) {
+    protected void check(WebDriver driver) {
         Assert.assertTrue( "Не дождались названия фрейма",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(PORTLET_NAME)));

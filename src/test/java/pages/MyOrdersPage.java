@@ -21,9 +21,9 @@ public class MyOrdersPage extends BasePage{
     }
 
     //открываем адреса доставки
-    public AddressesPage openAddresses(){
+    public DeliveryAddressPage openAddresses(){
         click(MY_ADDRESSES);
-        return new AddressesPage(driver);
+        return new DeliveryAddressPage(driver);
     }
 
     //открываем закладки
@@ -33,7 +33,7 @@ public class MyOrdersPage extends BasePage{
     }
 
     @Override
-    void check(WebDriver driver) {
+    protected void check(WebDriver driver) {
 
     }
 }
