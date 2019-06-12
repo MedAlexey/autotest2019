@@ -1,34 +1,42 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import java.util.NoSuchElementException;
+import org.openqa.selenium.NoSuchElementException;
+
+import static org.junit.Assert.fail;
 
 public abstract class BasePage {
 
     WebDriver driver;
 
-    BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         check(driver);
     }
 
-    void sendKeys(By element, String keys) {
+    public void sendKeys(By element, String keys) {
         driver.findElement(element).sendKeys(keys);
     }
 
-    void click(By element) {
-        driver.findElement(element).click();
+    public void click(By element) {
+
+        if(isElementPresent(element)){
+            driver.findElement(element).click();
+        }
+        else Assert.fail("Не удалось кликнуть на элемент");
+
     }
 
-    boolean isElementPresent(By element) {
+    public boolean isElementPresent(By element) {
         try {
-            driver.findElement(element);
+            driver.findElement(element).isDisplayed();
             return true;
         } catch (NoSuchElementException e) {
             return false;
         }
     }
 
-    abstract void check(WebDriver driver);
+    abstract protected void check(WebDriver driver);
 }

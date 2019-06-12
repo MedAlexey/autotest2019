@@ -1,7 +1,10 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AddressRemovalFrame extends BasePage {
 
@@ -12,13 +15,17 @@ public class AddressRemovalFrame extends BasePage {
     }
 
     //нажимаем кнопку "удалить"
-    public AddressesPage deleteAddress(){
+    public DeliveryAddressPage deleteAddress(){
         click(DELETE_BUTTON);
-        return new AddressesPage(driver);
+        return new DeliveryAddressPage(driver);
     }
 
+    // проверяем наличие кнопки "удалить"
     @Override
-    void check(WebDriver driver) {
+    protected void check(WebDriver driver) {
+        Assert.assertTrue("Не дождались кнопки 'Удалить'",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(DELETE_BUTTON)));
 
     }
 }
