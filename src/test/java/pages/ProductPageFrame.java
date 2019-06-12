@@ -203,7 +203,7 @@ public class ProductPageFrame extends BasePage implements IProductPage {
     }
 
     @Override
-    void check(WebDriver driver) {
+    protected void check(WebDriver driver) {
         Assert.assertTrue( "Не дождались кнопки \"купить\"",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(BUY_BUTTON)));
