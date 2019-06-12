@@ -104,7 +104,6 @@ public class ProductPage extends BasePage implements IProductPage {
      * выбор случайного цвета товара
      * @return цвет выбранного товара
      */
-    @Override
     public String chooseColor() {
         return chooseColor(0);
     }
@@ -130,7 +129,6 @@ public class ProductPage extends BasePage implements IProductPage {
      * получение количества цветов данного товара
      * @return количество цветов товара
      */
-    @Override
     public int getNumberOfColors() {
         return getColors().size();
     }
@@ -174,7 +172,7 @@ public class ProductPage extends BasePage implements IProductPage {
     // проверить наличие кнопки "получить скидку 5%"
     @Override
     public FivePercentDiscount checkFivePercentDiscount() {
-        return new FivePercentDiscount();
+        return new FivePercentDiscount(driver);
     }
 
 
@@ -186,12 +184,16 @@ public class ProductPage extends BasePage implements IProductPage {
     }
 
     // получение названия товара
-    @Override
     public String getProductName() {
         if (isElementPresent(PRODUCT_NAME)) {
             return driver.findElement(PRODUCT_NAME).getText();
         }
         return null;
+    }
+
+    @Override
+    public void addToBookmarks() {
+
     }
 
     @Override

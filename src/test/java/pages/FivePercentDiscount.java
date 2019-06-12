@@ -37,8 +37,8 @@ public class FivePercentDiscount extends BasePage implements IProductPage{
     }
 
     @Override
-    public void chooseSize() {
-
+    public String chooseSize() {
+        return null;
     }
 
     @Override
@@ -52,8 +52,13 @@ public class FivePercentDiscount extends BasePage implements IProductPage{
     }
 
     @Override
-    public void chooseColor() {
+    public String chooseColor(int number) {
+        return null;
+    }
 
+    @Override
+    public int getNumberOfColors() {
+        return 0;
     }
 
     @Override
@@ -77,7 +82,17 @@ public class FivePercentDiscount extends BasePage implements IProductPage{
     }
 
     @Override
-    public void refresh() {
+    public ProductPage refresh() {
+        return null;
+    }
+
+    @Override
+    public String getProductName() {
+        return null;
+    }
+
+    @Override
+    public void addToBookmarks() {
 
     }
 }

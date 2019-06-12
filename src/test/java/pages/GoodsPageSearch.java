@@ -9,16 +9,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import wrappers.GoodsPageWrapper;
 
 import java.util.List;
+import java.util.Random;
 
 public class GoodsPageSearch extends BasePage implements IGoodsPage{
 
     private static final By ORDERS = By.xpath(".//*[@class='filter_ac' and contains(text(), 'Мои заказы')]");
     private static final By USER_PAGE = By.xpath(".//*[@class='toolbar_logo_img']");
-    private static final By CATEGORY = By.xpath(".//*[@class='category-menu_i' and contains(text(), 'Дом и интерьер')]");
     private static final By PRODUCT_CARD = By.xpath(".//*[@class='ugrid_i']");
-    private static final By COLOR = By.xpath(".//*[@class='mall-card_label' and contains(text(), 'background-color: #000000')]");
-    private String COLOR_OF_PRODUCT = "NULL";
-    private String CATEGORY_OF_PRODUCT = "NULL";
+    private static final By COLOR = By.xpath(".//*[@class='mall-card_choose-item']");
+    private static final By SORT = By.xpath(".//*[@id='mallsortby']");
+    private static final By CHEAP = By.xpath(".//*[@value='PRICE_ASC']");
+    private static final By EXPENSIVE = By.xpath(".//*[@value='PRICE_DSC']");
 
     public GoodsPageSearch(WebDriver driver) {
         super(driver);
@@ -35,22 +36,38 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(USER_PAGE)));
 
-        Assert.assertTrue("Не дождались кнопки 'Дом и интерьер'",
+        Assert.assertTrue("Не дождались кнопки сортировки",
                 new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(CATEGORY)));
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(SORT)));
 
+        Assert.assertTrue("Не дождались кнопки сначала дешевые",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(CHEAP)));
+
+        Assert.assertTrue("Не дождались кнопки сначала дорогие",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(EXPENSIVE)));
     }
 
     // выбор цвета
-    public void chooseColor(){
+    public String chooseColor(){
         click(COLOR);
-        COLOR_OF_PRODUCT = "Black";
+        List<WebElement> elements = driver.findElements(COLOR);
+        WebElement element = elements.get(new Random().nextInt(elements.size()));
+        final String number = element.getCssValue("background-color");
+        return number;
     }
 
-    // выбор способа сортировки товаров
-    public void chooseSort(){
-        click(CATEGORY);
-        CATEGORY_OF_PRODUCT = "Дом и интерьер";
+    // выбор способа сортировки товаров сначала дешевые
+    public void chooseSortCheap(){
+        click(SORT);
+        click(CHEAP);
+    }
+
+    // выбор способа сортировки товаров сначала дорогие
+    public void chooseSortExpensive(){
+        click(SORT);
+        click(EXPENSIVE);
     }
 
     // получение обёрнутых товаров

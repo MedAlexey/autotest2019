@@ -107,7 +107,6 @@ public class ProductPageFrame extends BasePage implements IProductPage {
      * выбор случайного цвета товара
      * @return цвет выбранного товара
      */
-    @Override
     public String chooseColor() {
         return chooseColor(0);
     }
@@ -177,7 +176,7 @@ public class ProductPageFrame extends BasePage implements IProductPage {
     // проверить наличие кнопки "получить скидку 5%"
     @Override
     public FivePercentDiscount checkFivePercentDiscount() {
-        return new FivePercentDiscount();
+        return new FivePercentDiscount(driver);
     }
 
 
