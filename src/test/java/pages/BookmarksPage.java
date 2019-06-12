@@ -13,6 +13,7 @@ public class BookmarksPage extends BasePage {
 
     private static final By FOR_WAIT = By.xpath(".//div[5] [@class='mall-item __separator-basket __basket __flex'] ");
     private static final By BOOKMARKS_CARD = By.xpath(".//*[@class='mall-item __separator-basket __basket __flex']");
+    private static final By DELETE_BUTTON = By.xpath(".//*[text()='Удалить']");
 
     public BookmarksPage(WebDriver driver) {
         super(driver);
@@ -22,6 +23,12 @@ public class BookmarksPage extends BasePage {
     public List<BookmarksPageWrapper> getWrapBookmarks(){
         List<WebElement> elements = driver.findElements(BOOKMARKS_CARD);
         return wrapBookmarks(elements, driver);
+    }
+
+    //удаляет первую закладку
+    public BookmarksPage deleteFirstBookmark(){
+        click(DELETE_BUTTON);
+        return new BookmarksPage(driver);
     }
 
     @Override
