@@ -3,7 +3,7 @@ package wrappers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.ProductPage;
+import pages.ProductPageFrame;
 
 public class GoodsPageWrapper {
     private final WebElement cardProduct;
@@ -24,9 +24,9 @@ public class GoodsPageWrapper {
         return cardProduct.findElement(CARD_NAME).getText();
     }
 
-    public ProductPage openProduct(){
+    public ProductPageFrame openProduct(){
         cardProduct.findElement(CARD_NAME).click();
-        return new ProductPage(driver);
+        return new ProductPageFrame(driver);
     }
 
 }
