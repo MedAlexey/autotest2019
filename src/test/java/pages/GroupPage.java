@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GroupPage extends BasePage {
 
-    private static final By PRODUCT = By.xpath(".//*[@class='mall-media-link_a')]");
+    private static final By PRODUCT = By.xpath(".//*[@class='mall-media-link_a']");
 
     public GroupPage(WebDriver driver) {
         super(driver);
