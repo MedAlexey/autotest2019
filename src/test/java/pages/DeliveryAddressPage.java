@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DeliveryAddressPage extends BasePage{
 
-    private static final By ADD_ADDRESS = By.xpath(".//*[@class='portlet_h_inf')]");
-    private static final By DELETE_ICON = By.xpath(".//*[@class='ic12 ic12_delete ico-inline-middle')]");
+    private static final By ADD_ADDRESS = By.xpath(".//*[@class='portlet_h_inf']");
+    private static final By DELETE_ICON = By.xpath(".//*[@class='ic12 ic12_delete ico-inline-middle']");
 
     public DeliveryAddressPage(WebDriver driver) {
         super(driver);
