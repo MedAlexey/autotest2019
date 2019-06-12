@@ -20,12 +20,6 @@ public class MyOrdersPage extends BasePage{
         return new CartPage(driver);
     }
 
-    //открываем мои заказы
-    public OrdersPage openOrders(){
-        click(MY_ORDERS);
-        return new OrdersPage(driver);
-    }
-
     //открываем адреса доставки
     public AddressesPage openAddresses(){
         click(MY_ADDRESSES);
