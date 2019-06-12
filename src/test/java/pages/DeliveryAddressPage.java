@@ -30,7 +30,7 @@ public class DeliveryAddressPage extends BasePage{
 
     }
 
-    // проверка на наличие кнопок
+    // проверка на наличия кнопок
     @Override
     protected void check(WebDriver driver) {
 
