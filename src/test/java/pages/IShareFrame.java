@@ -10,5 +10,4 @@ public interface IShareFrame {
 
     // написать текст
     void writeText(String text);
-
 }

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 public class MyOrdersPage extends BasePage{
 
     private static final By CART = By.xpath(".//*[@class='tico_txt' and contains(text(),'Корзина')]");
-    private static final By MY_ORDERS = By.xpath(".//*[@class='tico_txt' and contains(text(),'Мои заказы')]");
     private static final By MY_ADDRESSES = By.xpath(".//*[@class='tico_txt' and contains(text(),'Адреса доставки')]");
     private static final By BOOKMARKS = By.xpath(".//*[@class='tico_txt' and contains(text(),'Закладки')]");
 

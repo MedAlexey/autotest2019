@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 public class AddressFrame extends BasePage {
 
     private static final By SAVE_BUTTON = By.xpath(".//*[@name='button_save' and @value='Сохранить']");
