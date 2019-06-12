@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class DeliveryAddressPage extends BasePage{
+public class DeliveryAddressPage extends BasePage {
 
     private static final By ADD_ADDRESS = By.xpath(".//*[@class='portlet_h_inf']");
     private static final By DELETE_ICON = By.xpath(".//*[@class='ic12 ic12_delete ico-inline-middle']");
@@ -16,14 +16,14 @@ public class DeliveryAddressPage extends BasePage{
     }
 
     // добавление нового адреса
-    public AddressFrame addAddress(){
+    public AddressFrame addAddress() {
         click(ADD_ADDRESS);
 
         return new AddressFrame(driver);
     }
 
     // удаление адреса
-    public AddressRemovalFrame deleteAddress(){
+    public AddressRemovalFrame deleteAddress() {
         click(DELETE_ICON);
 
         return new AddressRemovalFrame(driver);
@@ -37,10 +37,5 @@ public class DeliveryAddressPage extends BasePage{
         Assert.assertTrue("Не дождались кнопки 'Добавить адрес'",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(ADD_ADDRESS)));
-
-        Assert.assertTrue("Не дождались значка удаления",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(DELETE_ICON)));
-
     }
 }
