@@ -3,13 +3,19 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import wrappers.GoodsPageTransformer;
+import wrappers.GoodsPageWrapper;
+
+import java.util.List;
 
 public class GoodsPage extends BasePage implements IGoodsPage {
 
     private static final By ORDERS = By.xpath(".//*[@class='filter_ac' and contains(text(), 'Мои заказы')]");
     private static final By USER_PAGE = By.xpath(".//*[@class='toolbar_logo_img']");
+    private static final By PRODUCT_CARD = By.xpath(".//*[@class='ugrid_i']");
 
     public GoodsPage(WebDriver driver) {
         super(driver);
@@ -39,5 +45,11 @@ public class GoodsPage extends BasePage implements IGoodsPage {
     public UserMainPage openUserMainPage() {
         click(USER_PAGE);
         return new UserMainPage(driver);
+    }
+
+    //возвращает список обернутых товаров
+    public List<GoodsPageWrapper> getWrapGoods(){
+        List<WebElement> elements = driver.findElements(PRODUCT_CARD);
+        return GoodsPageTransformer.wrapProducts(elements,driver);
     }
 }
