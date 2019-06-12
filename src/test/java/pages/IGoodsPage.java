@@ -8,7 +8,4 @@ public interface IGoodsPage {
     // открыть страницу пользователя
     UserMainPage openUserMainPage();
 
-    // открыть страницу групп
-    GroupsPage openGroups();
-
 }
