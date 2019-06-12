@@ -29,10 +29,5 @@ public class GroupsPage extends BasePage {
         Assert.assertTrue("Не дождались кнопки 'Модерирую'",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(GROUPS_MODERATION)));
-
-        Assert.assertTrue("Не дождались кнопки перехода в свою группу",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(GROUP)));
-
     }
 }
