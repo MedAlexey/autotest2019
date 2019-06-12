@@ -1,6 +1,6 @@
 package pages;
 
-public interface IGroupsPage {
+public interface IGoodsPage {
 
     // открыть "Мои заказы"
     MyOrdersPage openMyOrders();
