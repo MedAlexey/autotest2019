@@ -28,11 +28,7 @@ public class BaseCartAndBookmarkWrapper {
     //возварщает цвет товара
     //Если работает долго уменьши ожидание
     //У поля "Цвет" и "Размер" одинаковые xpath
-    /*проверяем наличие элемента в карде
-     * если true, проверяем наличие в строке "Цвет:"
-     * если true, удаляем "Цвет:"(строку без "Цвет:" вытащить не получается), если false return null
-     * return все после "Цвет:"
-     * надеемся что никто в поле "Цвет" не будет писать "Цвет:" :D*/
+    //Вытащить содержимое поля ЦВЕТ: без "Цвет:" нельзя
     public String getColor(){
         if (cardCart.findElements(COLOR).size() > 0){
             String color = cardCart.findElement(COLOR).getText();
@@ -46,11 +42,7 @@ public class BaseCartAndBookmarkWrapper {
     //возваращает размер
     //У поля "Цвет" и "Размер" одинаковые xpath
     //Если работает долго уменьши ожидание
-    /*проверяем наличие элемента в карде
-     * если true, проверяем наличие в строке "Размер"
-     * если true, удаляем "Размер"(строку без "Размер" вытащить не получается), если false return null
-     * return все после "Размер"
-     * надеемся что никто в поле "Размер" не будет писать "Размер" :D*/
+    //Вытащить содержимое поля РАЗМЕР: без "Размер" нельзя
     public String getSize(){
         if (cardCart.findElements(SIZE).size() > 0){
             String size = cardCart.findElement(SIZE).getText();
