@@ -149,7 +149,6 @@ public class ProductPage extends BasePage implements IProductPage {
     public void shareInGroup() {
         click(SHARE_BUTTON);
         click(SHARE_IN_GROUP);
-        return new ShareInGroupFrame(driver);
     }
 
 
@@ -172,7 +171,7 @@ public class ProductPage extends BasePage implements IProductPage {
 
     // проверить наличие кнопки "получить скидку 5%"
     @Override
-    public boolean isFivePercentDiscount() {
+    public boolean isFivePercentDiscountPresent() {
         return isElementPresent(SALE);
     }
 

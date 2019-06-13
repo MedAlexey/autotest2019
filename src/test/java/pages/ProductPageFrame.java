@@ -182,7 +182,7 @@ public class ProductPageFrame extends BasePage implements IProductPage {
 
     // проверить наличие кнопки "получить скидку 5%"
     @Override
-    public boolean isFivePercentDiscount() {
+    public boolean isFivePercentDiscountPresent() {
         return isElementPresent(SALE);
     }
 
