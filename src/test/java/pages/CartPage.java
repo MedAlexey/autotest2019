@@ -31,6 +31,7 @@ public class CartPage extends BasePage {
 
     @Override
     protected void check(WebDriver driver) {
-
+        assertTrue(driver,3,DELETE_BUTTON,"Кнопка удалить не загружена", "Кнопка удалить загруженна");
+        assertTrue(driver,3,CART_CARD,"Карада в корзине не загрузилась", "карда корзины загрузилась");
     }
 }

@@ -10,9 +10,9 @@ import java.awt.*;
 public class UserMainPage extends BasePage {
 
     private static final By GOODS_BUTTON = By.xpath(".//*[@class = 'tico null' and contains(text(),'Товары')]");
-    private static final By MESSAGES_BUTTON = By.xpath(".//*[@id='msg_toolbar_button']");
-    private static final By CHECK_PRODUCT = By.xpath(".//*[@class='mall-media-link_a']");
-    private static final By GROUPS = By.xpath(".//*[@class = 'tico null' and contains(text(),'Группы')]");
+    private static final By GROUPS_BUTTON = By.xpath(".//*[@class = 'tico null' and contains(text(),'Группы')]");
+    private static final By MESSAGES_BUTTON = By.xpath(".//* [@id='msg_toolbar_button']");
+    private static final By CHECK_PRODUCT = By.xpath(".//* [@class='mall-media-link_a']");
 
     public UserMainPage(WebDriver driver) {
         super(driver);
@@ -36,13 +36,17 @@ public class UserMainPage extends BasePage {
         return new ProductPageFrame(driver);
     }
 
+    // открываем группы
     public GroupsPage openGroups(){
-        click(GROUPS);
+        click(GROUPS_BUTTON);
         return new GroupsPage(driver);
     }
 
     @Override
     protected void check(WebDriver driver){
-
+        assertTrue(driver,3,GOODS_BUTTON,"Кнопка Товары не загрузилась","Кнопка товары загрузилась");
+        assertTrue(driver,3,MESSAGES_BUTTON,"Кнопка сообщения не загрузилась","Кнопка загрузилась");
+        assertTrue(driver,3,GROUPS_BUTTON, "Кнопка группы не загрузилась", "Кнопка группы загрузилась");
+        assertTrue(driver,3,CHECK_PRODUCT, "репост не загрузился", "Репост загрузился");
     }
 }

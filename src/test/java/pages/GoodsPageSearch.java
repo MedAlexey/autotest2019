@@ -14,7 +14,7 @@ import java.util.Random;
 public class GoodsPageSearch extends BasePage implements IGoodsPage{
 
     private static final By ORDERS = By.xpath(".//*[@class='filter_i']/./*[contains(text(), 'Мои заказы')]");
-    private static final By USER_PAGE = By.xpath(".//*[@class='toolbar_logo_img']");
+    private static final By USER_PAGE = By.xpath(".//*[@id='topPanelLeftCorner']");
     private static final By PRODUCT_CARD = By.xpath(".//*[@class='ugrid_i']");
     private static final By COLOR = By.xpath(".//*[@class='mall-card_choose-item']");
     private static final By SORT = By.xpath(".//*[@id='mallsortby']");
@@ -84,7 +84,7 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     }
 
     // получение обёрнутых товаров
-    public List<GoodsPageWrapper> getGetProducts(){
+    public List<GoodsPageWrapper> getProducts(){
         List<WebElement> elements = driver.findElements(PRODUCT_CARD);
         return wrappers.GoodsPageTransformer.wrapProducts(elements,driver);
     }

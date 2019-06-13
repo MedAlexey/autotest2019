@@ -33,6 +33,7 @@ public class BookmarksPage extends BasePage {
 
     @Override
     protected void check(WebDriver driver) {
-        //explicitWaiter(driver,5,FOR_WAIT);
+        assertTrue(driver,3,FOR_WAIT,"Не дождались всех кард закладок", "Карды загруженны");
+        assertTrue(driver,3,DELETE_BUTTON,"Кнопка удалить не найдена","Кнопка удалить загруженна");
     }
 }

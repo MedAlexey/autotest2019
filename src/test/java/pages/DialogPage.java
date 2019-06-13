@@ -50,6 +50,6 @@ public class DialogPage extends BasePage {
 
     @Override
     protected void check(WebDriver driver) {
-
+        assertTrue(driver,3,DIALOG_CARD,"Карда диалога не загрузилась", "Карда диалога загруженна");
     }
 }
