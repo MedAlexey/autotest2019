@@ -35,6 +35,8 @@ public class ProductPageFrame extends BasePage implements IProductPage {
     private static final By PRODUCT_SIZE_ITEM = By.xpath(".//*[@class='mall-card_label-el __size']");
     // кнопка "добавить в закладки"
     private static final By ADD_TO_BOOKMARKS_BUTTON = By.xpath(".//*[@title='Добавить в закладки']");
+    // кнопка "закрыть"
+    private static final By CLOSE_BUTTON = By.xpath(".//*[@class='ic modal-new_close_ico']");
 
 
     public ProductPageFrame(WebDriver driver) {
@@ -45,6 +47,10 @@ public class ProductPageFrame extends BasePage implements IProductPage {
     @Override
     public void addToCart() {
         click(ADD_TO_CART_BUTTON);
+    }
+
+    public void close() {
+        click(CLOSE_BUTTON);
     }
 
 
@@ -64,7 +70,7 @@ public class ProductPageFrame extends BasePage implements IProductPage {
 
         }
 
-        return null;
+        return "";
     }
 
 
@@ -99,7 +105,7 @@ public class ProductPageFrame extends BasePage implements IProductPage {
             return driver.findElement(CURRENT_COLOR_NAME).getText();
         }
 
-        return null;
+        return "";
     }
 
 
