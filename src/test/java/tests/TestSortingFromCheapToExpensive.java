@@ -12,7 +12,7 @@ import java.util.List;
 public class TestSortingFromCheapToExpensive extends BaseTest {
 
     @Test
-    public void sortingFromExpensiveToCheap() {
+    public void sortingFromCheapToExpensive() {
 
         final String SEARCH_TEXT = "Утка";
 
