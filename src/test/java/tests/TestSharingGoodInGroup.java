@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 public class TestSharingGoodInGroup extends BaseTest{
+    String GROUP_NAME = "Group";
 
     @Before
     public void login(){
@@ -31,7 +32,7 @@ public class TestSharingGoodInGroup extends BaseTest{
         String NAME_BEFORE = goodsPageSearch.getProducts().get(RANDOM).getName();
 
         ShareInGroupFrame shareInGroupFrame = new ShareInGroupFrame(driver);
-        shareInGroupFrame.chooseGroup("Group");
+        shareInGroupFrame.chooseGroup(GROUP_NAME);
         shareInGroupFrame.share();
         shareInGroupFrame.closeFrame();
 
