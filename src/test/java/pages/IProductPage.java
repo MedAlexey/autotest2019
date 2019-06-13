@@ -28,7 +28,7 @@ public interface IProductPage {
     int getNumberOfColors();
 
     // поделиться в группе
-    ShareInGroupFrame shareInGroup();
+    void shareInGroup();
 
     // поделиться с текстом
     ShareWithTextFrame shareWithText();

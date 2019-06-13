@@ -41,7 +41,6 @@ public class TestSharingGoodInGroup extends BaseTest{
         Assert.assertEquals(NAME_BEFORE, NAME_AFTER);
         System.out.println("Товары совпадают");
 
-        // нужна зачистка?
     }
 
     @After

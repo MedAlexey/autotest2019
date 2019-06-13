@@ -157,10 +157,9 @@ public class ProductPageFrame extends BasePage implements IProductPage {
 
     // нажать на "опубликовать в группе"
     @Override
-    public ShareInGroupFrame shareInGroup() {
+    public void shareInGroup() {
         click(SHARE_BUTTON);
         click(SHARE_IN_GROUP);
-        return new ShareInGroupFrame(driver);
     }
 
 
