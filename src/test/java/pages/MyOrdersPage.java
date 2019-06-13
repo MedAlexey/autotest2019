@@ -33,6 +33,8 @@ public class MyOrdersPage extends BasePage{
 
     @Override
     protected void check(WebDriver driver) {
-
+        assertTrue(driver,3, CART, "Корзина не загрузилась", "Корзина загрузилась");
+        assertTrue(driver,3,MY_ADDRESSES,"Адресс не загрузился", "Адресс загрузился");
+        assertTrue(driver, 3, BOOKMARKS, "Закладки загрузились","Закладки не загрузились");
     }
 }

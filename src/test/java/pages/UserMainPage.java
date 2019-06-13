@@ -37,6 +37,8 @@ public class UserMainPage extends BasePage {
 
     @Override
     protected void check(WebDriver driver){
-
+        assertTrue(driver,3,GOODS_BUTTON,"Кнопка Товары не загрузилась","Кнопка товары загрузилась");
+        assertTrue(driver,3,MESSAGES_BUTTON,"Кнопка сообщения не загрузилась","Кнопка загрузилась");
+        assertTrue(driver,3,CHECK_PRODUCT, "репост не загрузился", "Репост загрузился");
     }
 }

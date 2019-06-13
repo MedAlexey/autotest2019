@@ -26,10 +26,8 @@ public class LoginPage extends BasePage {
     //Добавить ожидание
     @Override
     protected void check(WebDriver driver) {
-        driver.findElement(LOGIN_CARD_LOCATOR);
-        driver.findElement(LOGIN_LOCATOR);
-        driver.findElement(PASSWORD_LOCATOR);
-        driver.findElement(SUBMIT_LOCATOR);
-        driver.findElement(REGISTRATION_LOCATOR);
+        assertTrue(driver,3, LOGIN_LOCATOR,"Поля логина не загрузилось", "Поле логина загружено");
+        assertTrue(driver,3,PASSWORD_LOCATOR, "Поле пароля загурзилось", "Поле пароля загруженно");
+        assertTrue(driver,3,SUBMIT_LOCATOR,"кнопка 'войти' не загруженна", "кнопка 'войти' загруженна" );
     }
 }

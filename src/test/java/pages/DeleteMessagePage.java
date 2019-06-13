@@ -19,6 +19,6 @@ public class DeleteMessagePage extends BasePage {
 
     @Override
     protected void check(WebDriver driver) {
-
+        assertTrue(driver, 3,DELETE_BUTTON,"кнопка удалить не загрузилась", "кнопка удалить загрузилась");
     }
 }
