@@ -103,6 +103,17 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
         return true;
     }
 
+    //проверяет сортировку, сначала дешевые
+    public boolean isCheapSorted(List<GoodsPageWrapper> productsList) {
+        for (int i = 0; i < productsList.size() - 1; i++) {
+            if (Integer.parseInt(productsList.get(i).getPrice().replaceAll("\\s+","")) >
+                    Integer.parseInt(productsList.get(i + 1).getPrice().replaceAll("\\s+",""))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public MyOrdersPage openMyOrders() {
         click(ORDERS);
