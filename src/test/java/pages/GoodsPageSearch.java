@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import wrappers.GoodsPageTransformer;
 import wrappers.GoodsPageWrapper;
 
 import java.util.List;
@@ -86,7 +87,7 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     // получение обёрнутых товаров
     public List<GoodsPageWrapper> getProducts(){
         List<WebElement> elements = driver.findElements(PRODUCT_CARD);
-        return wrappers.GoodsPageTransformer.wrapProducts(elements,driver);
+        return GoodsPageTransformer.wrapProducts(elements,driver);
     }
 
     @Override

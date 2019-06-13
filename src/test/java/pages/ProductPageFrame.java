@@ -49,6 +49,7 @@ public class ProductPageFrame extends BasePage implements IProductPage {
         click(ADD_TO_CART_BUTTON);
     }
 
+    @Override
     public void close() {
         click(CLOSE_BUTTON);
     }

@@ -48,4 +48,6 @@ public interface IProductPage {
     // получение названия товара
     String getProductName();
 
+    void close();
+
 }
