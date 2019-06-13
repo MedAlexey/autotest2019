@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GroupsPage extends BasePage {
 
-    private static final By GROUPS_MODERATION = By.xpath(".//*[@class='hookBlock' and contains(text(), 'Модерирую')]");
+    private static final By GROUPS_MODERATION = By.xpath(".//*[@class='lp floatRight' and contains(text(), 'Модерирую')]");
     private static final By GROUP = By.xpath(".//*[@class='stub-img stub-group-interest-128 stub-img__128']");
 
     public GroupsPage(WebDriver driver) {
