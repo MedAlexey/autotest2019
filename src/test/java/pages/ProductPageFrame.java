@@ -37,6 +37,7 @@ public class ProductPageFrame extends BasePage implements IProductPage {
     private static final By ADD_TO_BOOKMARKS_BUTTON = By.xpath(".//*[@title='Добавить в закладки']");
     // кнопка "закрыть"
     private static final By CLOSE_BUTTON = By.xpath(".//*[@class='ic modal-new_close_ico']");
+    private static final By SALE = By.xpath(".//*[@class='mall-card_section' and contains(text(), 'Получить скидку 5%')]");
 
 
     public ProductPageFrame(WebDriver driver) {
@@ -182,8 +183,8 @@ public class ProductPageFrame extends BasePage implements IProductPage {
 
     // проверить наличие кнопки "получить скидку 5%"
     @Override
-    public FivePercentDiscount checkFivePercentDiscount() {
-        return new FivePercentDiscount();
+    public boolean isFivePercentDiscount() {
+        return isElementPresent(SALE);
     }
 
 

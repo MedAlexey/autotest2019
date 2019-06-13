@@ -32,6 +32,7 @@ public class ProductPage extends BasePage implements IProductPage {
     private static final By PRODUCT_SIZE_WORD = By.xpath(".//*[@class='mall-title __bold' and contains(text(), 'Размер:')]");
     // юнит, отвечающий за определённый размер товара
     private static final By PRODUCT_SIZE_ITEM = By.xpath(".//*[@class='mall-card_label-el __size']");
+    private static final By SALE = By.xpath(".//*[@class='mall-card_section' and contains(text(), 'Получить скидку 5%')]");
 
 
     public ProductPage(WebDriver driver) {
@@ -171,8 +172,8 @@ public class ProductPage extends BasePage implements IProductPage {
 
     // проверить наличие кнопки "получить скидку 5%"
     @Override
-    public FivePercentDiscount checkFivePercentDiscount() {
-        return new FivePercentDiscount();
+    public boolean isFivePercentDiscount() {
+        return isElementPresent(SALE);
     }
 
 

@@ -40,7 +40,7 @@ public interface IProductPage {
     ShareWithMessageFrame shareInMessage();
 
     // проверить наличие кнопки "Получить скидку 5%"
-    FivePercentDiscount checkFivePercentDiscount();
+    boolean isFivePercentDiscount();
 
     // обновить страницу
     ProductPage refresh();
