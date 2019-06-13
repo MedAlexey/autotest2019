@@ -36,7 +36,7 @@ public class BaseCartAndBookmarkWrapper {
                 return color.replaceAll("Цвет:","");
             }
         }
-        return null;
+        return "";
     }
 
     //возваращает размер
@@ -50,6 +50,6 @@ public class BaseCartAndBookmarkWrapper {
                 return size.replaceAll("Размер", "");
             }
         }
-        return null;
+        return "";
     }
 }

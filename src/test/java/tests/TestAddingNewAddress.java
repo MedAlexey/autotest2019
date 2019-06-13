@@ -29,7 +29,6 @@ public class TestAddingNewAddress extends BaseTest {
 
     @Before
     public void login() {
-        driver.get("https://ok.ru/dk?st.cmd=anonymMain");
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(config.getLogin(), config.getPassword());
     }
