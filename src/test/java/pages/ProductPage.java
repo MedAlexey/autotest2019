@@ -172,7 +172,7 @@ public class ProductPage extends BasePage implements IProductPage {
     // проверить наличие кнопки "получить скидку 5%"
     @Override
     public FivePercentDiscount checkFivePercentDiscount() {
-        return new FivePercentDiscount(driver);
+        return new FivePercentDiscount();
     }
 
 
@@ -189,11 +189,6 @@ public class ProductPage extends BasePage implements IProductPage {
             return driver.findElement(PRODUCT_NAME).getText();
         }
         return null;
-    }
-
-    @Override
-    public void addToBookmarks() {
-
     }
 
     @Override

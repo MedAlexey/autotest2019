@@ -20,6 +20,7 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     private static final By SORT = By.xpath(".//*[@id='mallsortby']");
     private static final By CHEAP = By.xpath(".//*[@value='PRICE_ASC']");
     private static final By EXPENSIVE = By.xpath(".//*[@value='PRICE_DSC']");
+    private final static By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[79]");
 
     public GoodsPageSearch(WebDriver driver) {
         super(driver);
@@ -47,6 +48,10 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
         Assert.assertTrue("Не дождались кнопки сначала дорогие",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(EXPENSIVE)));
+
+        Assert.assertTrue("Не дождались кнопки сначала дорогие",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(FOR_WAIT)));
     }
 
     // выбор цвета

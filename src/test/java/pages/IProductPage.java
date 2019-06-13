@@ -21,6 +21,9 @@ public interface IProductPage {
     // выбрать цвет
     String chooseColor(int number);
 
+    // выбрать цвет
+    String chooseColor();
+
     //  получение количества цветов данного товара
     int getNumberOfColors();
 
@@ -44,8 +47,5 @@ public interface IProductPage {
 
     // получение названия товара
     String getProductName();
-
-    // добавление товара в закладки
-    void addToBookmarks();
 
 }
