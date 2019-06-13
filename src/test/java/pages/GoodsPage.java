@@ -16,7 +16,6 @@ public class GoodsPage extends BasePage implements IGoodsPage {
     private static final By ORDERS = By.xpath(".//*[@class='filter_ac' and contains(text(), 'Мои заказы')]");
     private static final By USER_PAGE = By.xpath(".//*[@class='toolbar_logo_img']");
     private static final By PRODUCT_CARD = By.xpath(".//*[@class='ugrid_i']");
-    private final static By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[79]");
 
     public GoodsPage(WebDriver driver) {
         super(driver);
@@ -31,10 +30,6 @@ public class GoodsPage extends BasePage implements IGoodsPage {
         Assert.assertTrue("Не дождались кнопки перехода на страницу пользователя",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(USER_PAGE)));
-
-        Assert.assertTrue("Не дождались кнопки сначала дорогие",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(FOR_WAIT)));
 
     }
 
