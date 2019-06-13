@@ -192,6 +192,11 @@ public class ProductPage extends BasePage implements IProductPage {
     }
 
     @Override
+    public void close() {
+
+    }
+
+    @Override
     protected void check(WebDriver driver) {
         Assert.assertTrue( "Не дождались кнопки \"купить\"",
                 new WebDriverWait(driver, 10).

@@ -81,7 +81,7 @@ public class TestAddingNewAddress extends BaseTest {
                     curApartmentNumber.equals(apartmentNumber) &&
                     curHouseNumber.equals(houseNumber) &&
                     curSettlement.equals(settlement)) {
-                result = true;
+                return result = true;
             }
         }
 
