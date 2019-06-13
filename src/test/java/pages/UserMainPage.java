@@ -10,10 +10,11 @@ import java.awt.*;
 public class UserMainPage extends BasePage {
 
     private static final By GOODS_BUTTON = By.xpath(".//*[@class = 'tico null' and contains(text(),'Товары')]");
-    private static final By MESSAGES_BUTTON = By.xpath(".//* [@id='msg_toolbar_button']");
-    private static final By CHECK_PRODUCT = By.xpath(".//* [@class='mall-media-link_a']");
+    private static final By MESSAGES_BUTTON = By.xpath(".//*[@id='msg_toolbar_button']");
+    private static final By CHECK_PRODUCT = By.xpath(".//*[@class='mall-media-link_a']");
+    private static final By GROUPS = By.xpath(".//*[@class = 'tico null' and contains(text(),'Группы')]");
 
-    UserMainPage(WebDriver driver) {
+    public UserMainPage(WebDriver driver) {
         super(driver);
     }
 
@@ -33,6 +34,11 @@ public class UserMainPage extends BasePage {
     public ProductPageFrame openShareFromUserMainPage(){
         click(CHECK_PRODUCT);
         return new ProductPageFrame(driver);
+    }
+
+    public GroupsPage openGroups(){
+        click(GROUPS);
+        return new GroupsPage(driver);
     }
 
     @Override
