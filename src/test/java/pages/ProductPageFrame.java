@@ -176,7 +176,7 @@ public class ProductPageFrame extends BasePage implements IProductPage {
     // проверить наличие кнопки "получить скидку 5%"
     @Override
     public FivePercentDiscount checkFivePercentDiscount() {
-        return new FivePercentDiscount(driver);
+        return new FivePercentDiscount();
     }
 
 
