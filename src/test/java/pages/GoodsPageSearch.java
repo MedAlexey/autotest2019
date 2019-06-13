@@ -72,9 +72,10 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     }
 
     // выбор способа сортировки товаров сначала дешевые
-    public void chooseSortCheap(){
+    public GoodsPageSearch chooseSortCheap(){
         click(SORT);
         click(CHEAP);
+        return new GoodsPageSearch(driver);
     }
 
     // выбор способа сортировки товаров сначала дорогие
@@ -87,6 +88,17 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     public List<GoodsPageWrapper> getProducts(){
         List<WebElement> elements = driver.findElements(PRODUCT_CARD);
         return wrappers.GoodsPageTransformer.wrapProducts(elements,driver);
+    }
+
+    //проверяет сортировку, сначала дешевые
+    public boolean isCheapSorted(List<GoodsPageWrapper> productsList) {
+        for (int i = 0; i < productsList.size() - 1; i++) {
+            if (Integer.parseInt(productsList.get(i).getPrice()) >
+                    Integer.parseInt(productsList.get(i + 1).getPrice())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
