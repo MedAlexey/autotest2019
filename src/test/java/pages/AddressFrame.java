@@ -21,6 +21,21 @@ public class AddressFrame extends BasePage {
         super(driver);
     }
 
+    // ввод всех даннных
+    public void enterData(String name,
+                          String phoneNumber,
+                          String index,
+                          String apartmentNumber,
+                          String houseNumber,
+                          String settlement) {
+        enterName(name);
+        enterPhoneNumber(phoneNumber);
+        enterIndex(index);
+        enterApartmentNumber(apartmentNumber);
+        enterHouseNumber(houseNumber);
+        enterSettlement(settlement);
+    }
+
     // ввод ФИО пользователя
     public void enterName(String name) {
         sendKeys(USER_NAME_INPUT_FIELD, name);
@@ -57,8 +72,9 @@ public class AddressFrame extends BasePage {
     }
 
     // сохранить данные
-    public void save() {
+    public DeliveryAddressPage save() {
         click(SAVE_BUTTON);
+        return new DeliveryAddressPage(driver);
     }
 
     @Override

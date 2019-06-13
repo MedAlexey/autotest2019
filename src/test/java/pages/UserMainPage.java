@@ -13,7 +13,7 @@ public class UserMainPage extends BasePage {
     private static final By MESSAGES_BUTTON = By.xpath(".//* [@id='msg_toolbar_button']");
     private static final By CHECK_PRODUCT = By.xpath(".//* [@class='mall-media-link_a']");
 
-    UserMainPage(WebDriver driver) {
+    public UserMainPage(WebDriver driver) {
         super(driver);
     }
 

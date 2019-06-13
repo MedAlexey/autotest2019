@@ -16,7 +16,7 @@ public class GoodsPage extends BasePage implements IGoodsPage {
     private static final By ORDERS = By.xpath(".//*[@class='filter_i']/./*[contains(text(), 'Мои заказы')]");
     private static final By USER_PAGE = By.xpath(".//*[@class='toolbar_logo_img']");
     private static final By PRODUCT_CARD = By.xpath(".//*[@class='ugrid_i']");
-    private static final By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[79]");
+    private static final By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[78]");
     private static final By SEARCH_INPUT = By.xpath(".//*[@name='st.query']");
 
     public GoodsPage(WebDriver driver) {
