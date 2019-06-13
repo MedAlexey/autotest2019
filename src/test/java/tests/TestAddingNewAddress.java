@@ -21,7 +21,7 @@ import java.util.List;
 public class TestAddingNewAddress extends BaseTest {
 
     private String name = "my name";
-    private String phoneNumber = "+788805553535";
+    private String phoneNumber = "(880)555-35-35";
     private String index = "123456";
     private String apartmentNumber = "myStreet 2";
     private String houseNumber = "15/a";
@@ -76,7 +76,7 @@ public class TestAddingNewAddress extends BaseTest {
             String curSettlement = address.getAddress().split(", ")[1];
 
             if (curName.equals(name) &&
-                    curPhoneNumber.equals(phoneNumber) &&
+                    curPhoneNumber.equals("+7" + phoneNumber) &&
                     curIndex.equals(index) &&
                     curApartmentNumber.equals(apartmentNumber) &&
                     curHouseNumber.equals(houseNumber) &&
