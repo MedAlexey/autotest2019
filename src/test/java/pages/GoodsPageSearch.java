@@ -13,13 +13,15 @@ import java.util.Random;
 
 public class GoodsPageSearch extends BasePage implements IGoodsPage{
 
-    private static final By ORDERS = By.xpath(".//*[@class='filter_ac' and contains(text(), 'Мои заказы')]");
+    private static final By ORDERS = By.xpath(".//*[@class='filter_i']/./*[contains(text(), 'Мои заказы')]");
     private static final By USER_PAGE = By.xpath(".//*[@class='toolbar_logo_img']");
     private static final By PRODUCT_CARD = By.xpath(".//*[@class='ugrid_i']");
     private static final By COLOR = By.xpath(".//*[@class='mall-card_choose-item']");
     private static final By SORT = By.xpath(".//*[@id='mallsortby']");
     private static final By CHEAP = By.xpath(".//*[@value='PRICE_ASC']");
     private static final By EXPENSIVE = By.xpath(".//*[@value='PRICE_DSC']");
+    private static final By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[79]");
+    private static final By SEARCH_INPUT = By.xpath(".//*[@name='query']");
 
     public GoodsPageSearch(WebDriver driver) {
         super(driver);
@@ -47,6 +49,17 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
         Assert.assertTrue("Не дождались кнопки сначала дорогие",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(EXPENSIVE)));
+
+        Assert.assertTrue("Не дождались последнего товара из списка",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(FOR_WAIT)));
+    }
+
+    // написать в поиск по товарам
+    @Override
+    public GoodsPageSearch writeSearchQuery(String query) {
+        sendKeys(SEARCH_INPUT, query);
+        return new GoodsPageSearch(driver);
     }
 
     // выбор цвета

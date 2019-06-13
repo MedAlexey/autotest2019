@@ -8,4 +8,7 @@ public interface IGoodsPage {
     // открыть страницу пользователя
     UserMainPage openUserMainPage();
 
+    // написать в поиск по товарам
+    GoodsPageSearch writeSearchQuery(String query);
+
 }

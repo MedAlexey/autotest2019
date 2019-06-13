@@ -13,9 +13,11 @@ import java.util.List;
 
 public class GoodsPage extends BasePage implements IGoodsPage {
 
-    private static final By ORDERS = By.xpath(".//*[@class='filter_ac' and contains(text(), 'Мои заказы')]");
+    private static final By ORDERS = By.xpath(".//*[@class='filter_i']/./*[contains(text(), 'Мои заказы')]");
     private static final By USER_PAGE = By.xpath(".//*[@class='toolbar_logo_img']");
     private static final By PRODUCT_CARD = By.xpath(".//*[@class='ugrid_i']");
+    private static final By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[79]");
+    private static final By SEARCH_INPUT = By.xpath(".//*[@name='st.query']");
 
     public GoodsPage(WebDriver driver) {
         super(driver);
@@ -31,6 +33,16 @@ public class GoodsPage extends BasePage implements IGoodsPage {
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(USER_PAGE)));
 
+        Assert.assertTrue("Не дождались последнего товара из списка",
+                new WebDriverWait(driver, 10).
+                        until((ExpectedCondition<Boolean>) d -> isElementPresent(FOR_WAIT)));
+    }
+
+    // написать в поиск по товарам
+    @Override
+    public GoodsPageSearch writeSearchQuery(String query) {
+        sendKeys(SEARCH_INPUT, query);
+        return new GoodsPageSearch(driver);
     }
 
     // открыть "Мои заказы"
