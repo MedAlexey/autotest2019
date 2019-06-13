@@ -80,9 +80,10 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     }
 
     // выбор способа сортировки товаров сначала дорогие
-    public void chooseSortExpensive(){
+    public GoodsPageSearch chooseSortExpensive(){
         click(SORT);
         click(EXPENSIVE);
+        return new GoodsPageSearch(driver);
     }
 
     // получение обёрнутых товаров
@@ -91,11 +92,11 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
         return GoodsPageTransformer.wrapProducts(elements,driver);
     }
 
-    //проверяет сортировку, сначала дешевые
-    public boolean isCheapSorted(List<GoodsPageWrapper> productsList) {
+    //проверяет сортировку, сначала дорогие
+    public boolean isExpensiveSorted(List<GoodsPageWrapper> productsList) {
         for (int i = 0; i < productsList.size() - 1; i++) {
-            if (Integer.parseInt(productsList.get(i).getPrice()) >
-                    Integer.parseInt(productsList.get(i + 1).getPrice())) {
+            if (Integer.parseInt(productsList.get(i).getPrice().replaceAll("\\s+","")) <
+                    Integer.parseInt(productsList.get(i + 1).getPrice().replaceAll("\\s+",""))) {
                 return false;
             }
         }
