@@ -169,14 +169,8 @@ public class ProductPage extends BasePage {
 
 
     // проверить наличие кнопки "получить скидку 5%"
-    public boolean isFivePercentDiscountPresent() {
-        boolean sale = isElementPresent(SALE);
-        if(sale = true){
-            return true;
-        }
-        else {
-            Assert.assertTrue("Не нашли товар со скидкой",false);
-        }
+    public void isFivePercentDiscountPresent() {
+            Assert.assertTrue("Не нашли товар со скидкой",isElementPresent(SALE));
     }
 
     // получить скидку
