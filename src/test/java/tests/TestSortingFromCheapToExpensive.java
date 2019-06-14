@@ -11,6 +11,13 @@ import java.util.List;
 
 public class TestSortingFromCheapToExpensive extends BaseTest {
 
+    /**логинимся
+     * переходим в товары
+     * используем поиск
+     * сортируем "сначала дорогие"
+     * оборачиваем все товары
+     * проверяем сортировку
+     */
     @Test
     public void sortingFromCheapToExpensive() {
 
@@ -29,8 +36,8 @@ public class TestSortingFromCheapToExpensive extends BaseTest {
         System.out.println("Сортировка корректна");
     }
 
-   /* @After
+    @After
     public void out(){
         driver.quit();
-    }*/
+    }
 }

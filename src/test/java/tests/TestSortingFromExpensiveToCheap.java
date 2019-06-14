@@ -36,8 +36,8 @@ public class TestSortingFromExpensiveToCheap extends BaseTest {
         System.out.println("Сортировка корректна");
     }
 
-   /* @After
+    @After
     public void out(){
         driver.quit();
-    }*/
+    }
 }

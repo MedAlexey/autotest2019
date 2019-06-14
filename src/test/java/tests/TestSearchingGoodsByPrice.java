@@ -1,17 +1,22 @@
 package tests;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.Keys;
 import pages.GoodsPageSearch;
 import pages.LoginPage;
 import wrappers.GoodsPageWrapper;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class TestSearchingGoodsByPrice extends BaseTest {
 
+    /**логинимся
+     * переходим в товары
+     * вводим границы цены
+     * оборачиваем все товары
+     * проверяем цены
+     */
     @Test
     public void testSearchingGoodsByPrice(){
 
@@ -32,5 +37,10 @@ public class TestSearchingGoodsByPrice extends BaseTest {
         Assert.assertTrue("Цена товаров не соответствует диапозну",
                 goodsPageSearch.isGoodPrice(Integer.parseInt(MIN_PRICE),Integer.parseInt(MAX_PRICE),productsList));
         System.out.println("Цены соответсвуют диапозону");
+    }
+
+    @After
+    public void out(){
+        driver.quit();
     }
 }
