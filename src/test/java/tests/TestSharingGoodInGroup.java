@@ -2,7 +2,6 @@ package tests;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import pages.*;
 import wrappers.GoodsPageWrapper;
@@ -19,7 +18,7 @@ public class TestSharingGoodInGroup extends BaseTest{
     * проверяем пост в группе
     */
 
-    String GROUP_NAME = "Group";
+    String GROUP_NAME = "products test";
 
     @Test
     public void sharingGoodInGroup(){
@@ -30,7 +29,7 @@ public class TestSharingGoodInGroup extends BaseTest{
 
         UserMainPage userMainPage = new UserMainPage(driver);
         GoodsPage goodsPage = userMainPage.openGoodsPage();
-        GoodsPageSearch goodsPageSearch = goodsPage.writeSearchQuery("Product");
+        GoodsPageSearch goodsPageSearch = goodsPage.writeSearchQuery(GROUP_NAME);
 
         int random = new Random().nextInt(10);
         List<GoodsPageWrapper> gp =  goodsPageSearch.getProducts();
@@ -42,8 +41,12 @@ public class TestSharingGoodInGroup extends BaseTest{
         shareInGroupFrame.share();
         shareInGroupFrame.closeFrame();
 
-        String nameAfter = goodsPageSearch.openUserMainPage().openGroups().openGroup(driver).
-                checkProductOnTheWall().getProductName();
+        String nameAfter = goodsPageSearch.openUserMainPage()
+                .openGroups()
+                .openGroupModeration(driver)
+                .openGroup(driver)
+                .checkProductOnTheWall()
+                .getProductName();
         Assert.assertEquals(nameBefore, nameAfter);
         System.out.println("Товары совпадают");
 
