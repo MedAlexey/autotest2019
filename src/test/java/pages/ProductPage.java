@@ -1,12 +1,9 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,8 @@ public class ProductPage extends BasePage {
     private static final By ADD_TO_CART_BUTTON = By.className("js-mall-card-button-to-basket");
     private static final By BUY_BUTTON = By.className("js-mall-card-button-buy");
     private static final By MALL_CARD = By.className("mall-card_section");
-    private static final By SHARE_BUTTON = By.xpath(".//*[@data-type='RESHARE']");
+    private static final By SHARE_BUTTON = By.xpath(".//*[@data-type='RESHARE']"); //????????????????
+
     static final By SHARE_NOW_BUTTON = By.xpath(".//*[@data-l='t,now']");
     static final By SHARE_IN_GROUP = By.xpath(".//*[@data-l='t,group']");
     static final By SHARE_WITH_FEED = By.xpath(".//*[@data-l='t,feed']");
@@ -33,10 +31,15 @@ public class ProductPage extends BasePage {
     // юнит, отвечающий за определённый размер товара
     private static final By PRODUCT_SIZE_ITEM = By.xpath(".//*[@class='mall-card_label-el __size']");
     private static final By SALE = By.xpath(".//*[@class='mall-card_section' and contains(text(), 'Получить скидку 5%')]");
-
+    String price = driver.findElement(By.xpath(".//*[@class='mall-price __big __rub js-mall-card-price']")).getText();
 
     public ProductPage(WebDriver driver) {
         super(driver);
+    }
+
+    // взять цену элемента
+    public int getPrice(){
+        return Integer.parseInt(price);
     }
 
     // добавление товара в корзину
@@ -169,6 +172,11 @@ public class ProductPage extends BasePage {
         return isElementPresent(SALE);
     }
 
+    // получить скидку
+    public SaleFrame getFivePercentDiscount(){
+        click(SALE);
+        return new SaleFrame(driver);
+    }
 
     // обновить страницу
     public ProductPage refresh() {

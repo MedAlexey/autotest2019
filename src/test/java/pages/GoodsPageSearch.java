@@ -23,7 +23,7 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     private static final By SORT = By.xpath(".//*[@id='mallsortby']");
     private static final By CHEAP = By.xpath(".//*[@value='PRICE_ASC']");
     private static final By EXPENSIVE = By.xpath(".//*[@value='PRICE_DSC']");
-    private static final By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[10]");
+    private static final By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[70]");
     private static final By SEARCH_INPUT = By.xpath(".//*[@name='query']");
     private static final By MIN_PRICE = By.xpath(".//*[@name='minPrice']");
     private static final By MAX_PRICE = By.xpath(".//*[@name='maxPrice']");
@@ -99,6 +99,7 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     //проверяет сортировку, сначала дорогие
     public boolean isExpensiveSorted(List<GoodsPageWrapper> productsList) {
         for (int i = 0; i < productsList.size() - 1; i++) {
+            System.out.println(productsList.get(i).getPrice()+" "+productsList.get(i+1).getPrice());
             if (Integer.parseInt(productsList.get(i).getPrice().replaceAll("\\s+","")) <
                     Integer.parseInt(productsList.get(i + 1).getPrice().replaceAll("\\s+",""))) {
                 return false;
@@ -135,6 +136,18 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
         for (GoodsPageWrapper card : productList){
             if (Integer.parseInt(card.getPrice().replaceAll("\\s+","")) < minPrice ||
             Integer.parseInt(card.getPrice().replaceAll("\\s+","")) > maxPrice){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //проверяет сортировку, сначала дешевые
+    public boolean isCheapSorted(List<GoodsPageWrapper> productsList) {
+        for (int i = 0; i < productsList.size() - 1; i++) {
+            System.out.println(productsList.get(i).getPrice()+" "+productsList.get(i+1).getPrice());
+            if (Integer.parseInt(productsList.get(i).getPrice().replaceAll("\\s+","")) >
+                    Integer.parseInt(productsList.get(i + 1).getPrice().replaceAll("\\s+",""))) {
                 return false;
             }
         }

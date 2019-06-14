@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import pages.GoodsPageSearch;
@@ -27,12 +28,16 @@ public class TestSortingFromExpensiveToCheap extends BaseTest {
         GoodsPageSearch goodsPageSearch = loginPage.login(config.getLogin(), config.getPassword())
                 .openGoodsPage()
                 .writeSearchQuery(SEARCH_TEXT)
-                .chooseSortExpensive();
-
+                .chooseSortExpensive()
+                ;
         List<GoodsPageWrapper> productsList = goodsPageSearch.getProducts();
 
         Assert.assertTrue("Сортировка не корректна", goodsPageSearch.isExpensiveSorted(productsList));
         System.out.println("Сортировка корректна");
     }
 
+    @After
+    public void out(){
+        driver.quit();
+    }
 }

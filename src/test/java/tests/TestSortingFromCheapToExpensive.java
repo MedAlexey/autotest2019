@@ -9,33 +9,31 @@ import wrappers.GoodsPageWrapper;
 
 import java.util.List;
 
-public class TestSearchingGoodsByPrice extends BaseTest {
+public class TestSortingFromCheapToExpensive extends BaseTest {
 
     /**логинимся
      * переходим в товары
-     * вводим границы цены
+     * используем поиск
+     * сортируем "сначала дорогие"
      * оборачиваем все товары
-     * проверяем цены
+     * проверяем сортировку
      */
     @Test
-    public void testSearchingGoodsByPrice(){
+    public void sortingFromCheapToExpensive() {
 
-        final String MIN_PRICE = "3000";
-        final String MAX_PRICE = "5000";
-        final String SEARCH_TEXT= "Кроссовки";
+        final String SEARCH_TEXT = "Утка";
 
         LoginPage loginPage = new LoginPage(driver);
 
         GoodsPageSearch goodsPageSearch = loginPage.login(config.getLogin(), config.getPassword())
                 .openGoodsPage()
                 .writeSearchQuery(SEARCH_TEXT)
-                .setMinAndMaxPrice(MIN_PRICE,MAX_PRICE)
+                .chooseSortCheap()
                 ;
         List<GoodsPageWrapper> productsList = goodsPageSearch.getProducts();
 
-        Assert.assertTrue("Цена товаров не соответствует диапозну",
-                goodsPageSearch.isGoodPrice(Integer.parseInt(MIN_PRICE),Integer.parseInt(MAX_PRICE),productsList));
-        System.out.println("Цены соответсвуют диапозону");
+        Assert.assertTrue("Сортировка не корректна", goodsPageSearch.isCheapSorted(productsList));
+        System.out.println("Сортировка корректна");
     }
 
     @After
