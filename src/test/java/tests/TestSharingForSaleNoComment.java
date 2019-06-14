@@ -3,6 +3,8 @@ package tests;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import pages.*;
 import wrappers.GoodsPageWrapper;
 
@@ -37,7 +39,13 @@ public class TestSharingForSaleNoComment extends BaseTest{
         int before = productPageFrame.getPrice();
         productPageFrame.getFivePercentDiscount().share();
         productPageFrame.refresh();
-        int after = productPageFrame.getPrice();
+        new Actions(driver).sendKeys(Keys.PAGE_UP).build().perform();
+        new Actions(driver).sendKeys(Keys.PAGE_UP).build().perform();
+        new Actions(driver).sendKeys(Keys.PAGE_UP).build().perform();
+        new Actions(driver).sendKeys(Keys.PAGE_UP).build().perform();
+        int after = new ProductPage(driver).getPrice();
+
+        System.out.println(before + " " + after);
         Assert.assertTrue(before > after);
         System.out.println("Скидка получена");
 

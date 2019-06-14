@@ -46,7 +46,7 @@ public class TestAddingNewAddress extends BaseTest {
         );
         addressFrame.save();
 
-        new EventFiringWebDriver(driver).navigate().refresh();
+        //new EventFiringWebDriver(driver).navigate().refresh();
 
         // проверяем адрес
         Assert.assertTrue(deliveryAddressPage.addressIsCorrect(

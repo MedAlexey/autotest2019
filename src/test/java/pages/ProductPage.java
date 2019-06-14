@@ -30,7 +30,7 @@ public class ProductPage extends BasePage {
     private static final By PRODUCT_SIZE_WORD = By.xpath(".//*[@class='mall-title __bold' and contains(text(), 'Размер:')]");
     // юнит, отвечающий за определённый размер товара
     private static final By PRODUCT_SIZE_ITEM = By.xpath(".//*[@class='mall-card_label-el __size']");
-    private static final By SALE = By.xpath(".//*[@class='mall-card_section' and contains(text(), 'Получить скидку 5%')]");
+    private static final By SALE = By.xpath(".//*[@class='mall-card_sale-button mb-3x']");
     String price = driver.findElement(By.xpath(".//*[@class='mall-price __big __rub js-mall-card-price']")).getText();
 
     public ProductPage(WebDriver driver) {
