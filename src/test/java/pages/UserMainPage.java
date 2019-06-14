@@ -13,6 +13,7 @@ public class UserMainPage extends BasePage {
     private static final By GROUPS_BUTTON = By.xpath(".//*[@class = 'tico null' and contains(text(),'Группы')]");
     private static final By MESSAGES_BUTTON = By.xpath(".//* [@id='msg_toolbar_button']");
     private static final By CHECK_PRODUCT = By.xpath(".//* [@class='mall-media-link_a']");
+    private static final By COMMENT = By.xpath(".//*[@class='media-text_cnt']");
 
     public UserMainPage(WebDriver driver) {
         super(driver);
@@ -40,6 +41,12 @@ public class UserMainPage extends BasePage {
     public GroupsPage openGroups(){
         click(GROUPS_BUTTON);
         return new GroupsPage(driver);
+    }
+
+    // открыть товар с комментом
+    public ProductWithMessageFrame openProductWithComment(){
+        click(COMMENT);
+        return new ProductWithMessageFrame(driver);
     }
 
     @Override
