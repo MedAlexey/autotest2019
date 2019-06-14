@@ -16,7 +16,7 @@ public abstract class BaseTest {
 
     private void setUpDriver() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.get("https://ok.ru/dk?st.cmd=anonymMain");
     }
 }

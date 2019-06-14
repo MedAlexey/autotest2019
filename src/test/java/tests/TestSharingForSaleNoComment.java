@@ -29,7 +29,7 @@ public class TestSharingForSaleNoComment extends BaseTest{
 
         UserMainPage userMainPage = new UserMainPage(driver);
         GoodsPage goodsPage = userMainPage.openGoodsPage();
-        GoodsPageSearch goodsPageSearch = goodsPage.writeSearchQuery("Товар");
+        GoodsPageSearch goodsPageSearch = goodsPage.writeSearchQuery("Кот");
 
         int random = new Random().nextInt(20);
         List<GoodsPageWrapper> gp =  goodsPageSearch.getProducts();

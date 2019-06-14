@@ -207,16 +207,17 @@ public class ProductPage extends BasePage {
                 "Не дождались кнопки \"поделиться\"",
                 "Кнопка \"поделиться\" загружена");
 
-        assertTrue(driver, 10, ADD_TO_CART_BUTTON,
+       /* assertTrue(driver, 10, ADD_TO_CART_BUTTON,
                 "Не дождались кнопки \"добавить в корзину\"",
-                "Кнопка \"добавить в корзину\" загружена");
+                "Кнопка \"добавить в корзину\" загружена");*/
 
-        assertTrue(driver, 10, INCREASE_QUANTITY_BUTTON,
+/*        assertTrue(driver, 10, INCREASE_QUANTITY_BUTTON,
                 "Не дождались кнопки увеличения количества товара",
                 "Кнопка увеличения количества товара загружена");
 
         assertTrue(driver, 10, DECREASE_QUANTITY_BUTTON,
                 "Не дождались кнопки уменьшения количества товара",
                 "Кнопка уменьшения количества товара загружена");
+    */
     }
 }
