@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -169,7 +170,13 @@ public class ProductPage extends BasePage {
 
     // проверить наличие кнопки "получить скидку 5%"
     public boolean isFivePercentDiscountPresent() {
-        return isElementPresent(SALE);
+        boolean sale = isElementPresent(SALE);
+        if(sale = true){
+            return true;
+        }
+        else {
+            Assert.assertTrue("Не нашли товар со скидкой",false);
+        }
     }
 
     // получить скидку
