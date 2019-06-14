@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ProductPage extends BasePage implements IProductPage {
+public class ProductPage extends BasePage {
 
     private static final By ADD_TO_CART_BUTTON = By.className("js-mall-card-button-to-basket");
     private static final By BUY_BUTTON = By.className("js-mall-card-button-buy");
@@ -40,14 +40,12 @@ public class ProductPage extends BasePage implements IProductPage {
     }
 
     // добавление товара в корзину
-    @Override
     public void addToCart() {
         click(ADD_TO_CART_BUTTON);
     }
 
 
     // выбор размера случайным образом
-    @Override
     public String chooseSize() {
 
         if (isElementPresent(PRODUCT_SIZE_WORD)) {
@@ -62,19 +60,17 @@ public class ProductPage extends BasePage implements IProductPage {
 
         }
 
-        return null;
+        return "";
     }
 
 
     // увеличить количество товара на 1
-    @Override
     public void increaseQuantity() {
         click(INCREASE_QUANTITY_BUTTON);
     }
 
 
     // уменьшить количество товара на 1
-    @Override
     public void decreaseQuantity() {
         click(DECREASE_QUANTITY_BUTTON);
     }
@@ -87,7 +83,6 @@ public class ProductPage extends BasePage implements IProductPage {
      * @param number порядковый номер цвета. Если равен 0, то цвет выбирается случайным образом
      * @return название выбранного цвета
      */
-    @Override
     public String chooseColor(int number) {
         List<WebElement> colors = getColors();
 
@@ -97,7 +92,7 @@ public class ProductPage extends BasePage implements IProductPage {
             return driver.findElement(CURRENT_COLOR_NAME).getText();
         }
 
-        return null;
+        return "";
     }
 
 
@@ -136,7 +131,6 @@ public class ProductPage extends BasePage implements IProductPage {
 
 
     // нажать на "дополнить своим текстом"
-    @Override
     public ShareWithTextFrame shareWithText() {
         click(SHARE_BUTTON);
         click(SHARE_WITH_FEED);
@@ -145,7 +139,6 @@ public class ProductPage extends BasePage implements IProductPage {
 
 
     // нажать на "опубликовать в группе"
-    @Override
     public void shareInGroup() {
         click(SHARE_BUTTON);
         click(SHARE_IN_GROUP);
@@ -153,7 +146,6 @@ public class ProductPage extends BasePage implements IProductPage {
 
 
     // нажать на "поделиться сейчас"
-    @Override
     public void shareNow() {
         click(SHARE_BUTTON);
         click(SHARE_NOW_BUTTON);
@@ -161,7 +153,6 @@ public class ProductPage extends BasePage implements IProductPage {
 
 
     // нажать на "отправить сообщением"
-    @Override
     public ShareWithMessageFrame shareInMessage() {
         click(SHARE_BUTTON);
         click(SHARE_WITH_MESSAGE);
@@ -170,14 +161,12 @@ public class ProductPage extends BasePage implements IProductPage {
 
 
     // проверить наличие кнопки "получить скидку 5%"
-    @Override
     public boolean isFivePercentDiscountPresent() {
         return isElementPresent(SALE);
     }
 
 
     // обновить страницу
-    @Override
     public ProductPage refresh() {
         new EventFiringWebDriver(driver).navigate().refresh();
         return new ProductPage(driver);
@@ -188,39 +177,33 @@ public class ProductPage extends BasePage implements IProductPage {
         if (isElementPresent(PRODUCT_NAME)) {
             return driver.findElement(PRODUCT_NAME).getText();
         }
-        return null;
-    }
-
-    @Override
-    public void close() {
-
+        return "";
     }
 
     @Override
     protected void check(WebDriver driver) {
-        Assert.assertTrue( "Не дождались кнопки \"купить\"",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(BUY_BUTTON)));
+        assertTrue(driver, 10, BUY_BUTTON,
+                "Не дождались кнопки \"купить\"",
+                "Кнопка \"купить\" загружена");
 
-        Assert.assertTrue( "Не дождались элементов управления товаром",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(MALL_CARD)));
+        assertTrue(driver, 10, MALL_CARD,
+                "Не дождались элементов управления товаром",
+                "Элементы управления товаром загружены");
 
-        Assert.assertTrue( "Не дождались кнопки \"поделиться\"",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(SHARE_BUTTON)));
+        assertTrue(driver, 10, SHARE_BUTTON,
+                "Не дождались кнопки \"поделиться\"",
+                "Кнопка \"поделиться\" загружена");
 
+        assertTrue(driver, 10, ADD_TO_CART_BUTTON,
+                "Не дождались кнопки \"добавить в корзину\"",
+                "Кнопка \"добавить в корзину\" загружена");
 
-        Assert.assertTrue( "Не дождались кнопки \"добавить в корзину\"",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(ADD_TO_CART_BUTTON)));
+        assertTrue(driver, 10, INCREASE_QUANTITY_BUTTON,
+                "Не дождались кнопки увеличения количества товара",
+                "Кнопка увеличения количества товара загружена");
 
-        Assert.assertTrue( "Не дождались кнопки увеличения количества товара",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(INCREASE_QUANTITY_BUTTON)));
-
-        Assert.assertTrue( "Не дождались кнопки уменьшения количества товара",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(DECREASE_QUANTITY_BUTTON)));
+        assertTrue(driver, 10, DECREASE_QUANTITY_BUTTON,
+                "Не дождались кнопки уменьшения количества товара",
+                "Кнопка уменьшения количества товара загружена");
     }
 }

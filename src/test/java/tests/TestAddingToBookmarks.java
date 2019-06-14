@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import pages.*;
 import wrappers.BookmarksPageWrapper;
+import wrappers.GoodsPageWrapper;
 
 import java.util.List;
 
@@ -20,23 +21,18 @@ import java.util.List;
  */
 public class TestAddingToBookmarks extends BaseTest {
 
-    @Before
-    public void login() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(config.getLogin(), config.getPassword());
-    }
 
     @Test
     public void addingToBookmarksTest() {
         // делаем окно на полный экран
         driver.manage().window().maximize();
 
-        // переходим в товары
-        UserMainPage userMainPage = new UserMainPage(driver);
-        GoodsPage goodsPage = userMainPage.openGoodsPage();
+        // логинимся и переходим в товары
+        GoodsPage goodsPage = new LoginPage(driver).login(config.getLogin(), config.getPassword()).openGoodsPage();
+        List<GoodsPageWrapper> goods = goodsPage.getWrapGoods();
 
         // сохраняем информацию первого товара и добавляем его в закладки
-        ProductPageFrame firstProduct = goodsPage.getWrapGoods().get(0).openProduct();
+        ProductPageFrame firstProduct = goods.get(0).openProduct();
         String firstProductName = firstProduct.getProductName();
         String firstProductColor = firstProduct.chooseColor();
         String firstProductSize = firstProduct.chooseSize();
@@ -44,49 +40,61 @@ public class TestAddingToBookmarks extends BaseTest {
         firstProduct.close();
 
         // сохраняем информацию второго товара и добавляем его в закладки
-        ProductPageFrame secondProduct = goodsPage.getWrapGoods().get(1).openProduct();
+        ProductPageFrame secondProduct = goods.get(1).openProduct();
         String secondProductName = secondProduct.getProductName();
         String secondProductColor = secondProduct.chooseColor();
         String secondProductSize = secondProduct.chooseSize();
-        firstProduct.addToBookmarks();
-        firstProduct.close();
+        secondProduct.addToBookmarks();
+        secondProduct.close();
+
+        // сохраняем информацию третьего товара и добавляем его в закладки
+        ProductPageFrame thirdProduct = goods.get(2).openProduct();
+        String thirdProductName = thirdProduct.getProductName();
+        String thirdProductColor = thirdProduct.chooseColor();
+        String thirdProductSize = thirdProduct.chooseSize();
+        thirdProduct.addToBookmarks();
+        thirdProduct.close();
+
+        // сохраняем информацию четвёртого товара и добавляем его в закладки
+        ProductPageFrame fourthProduct = goods.get(3).openProduct();
+        String fourthProductName = fourthProduct.getProductName();
+        String fourthProductColor = fourthProduct.chooseColor();
+        String fourthProductSize = fourthProduct.chooseSize();
+        fourthProduct.addToBookmarks();
+        fourthProduct.close();
+
+        // сохраняем информацию пятого товара и добавляем его в закладки
+        ProductPageFrame fifthProduct = goods.get(4).openProduct();
+        String fifthProductName = fifthProduct.getProductName();
+        String fifthProductColor = fifthProduct.chooseColor();
+        String fifthProductSize = fifthProduct.chooseSize();
+        fifthProduct.addToBookmarks();
+        fifthProduct.close();
 
         ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,-1000);");
 
         // переходим в закладки
-        MyOrdersPage myOrdersPage = goodsPage.openMyOrders();
-        BookmarksPage bookmarksPage = myOrdersPage.openBookmarks();
-
-        List<BookmarksPageWrapper> bookmarks = bookmarksPage.getWrapBookmarks();
-
-        Assert.assertTrue(contains(firstProductName, firstProductColor, firstProductSize, bookmarks));
-        Assert.assertTrue(contains(secondProductName, secondProductColor, secondProductSize, bookmarks));
-
-    }
-
-    private boolean contains(String expectedName,
-                             String expectedColor,
-                             String expectedSize,
-                             List<BookmarksPageWrapper> bookmarks) {
-        boolean result = false;
-
-        for (BookmarksPageWrapper bookmark: bookmarks) {
-            if ( (bookmark.getColor().equals(expectedColor)) &&
-                    (bookmark.getName().equals(expectedName)) &&
-                    (bookmark.getSize().equals(expectedSize))
-            ) {
-                result = true;
-            }
-        }
+        BookmarksPage bookmarksPage = goodsPage.openMyOrders().openBookmarks();
 
 
-        return result;
+        Assert.assertTrue(bookmarksPage.contains(firstProductName, firstProductColor, firstProductSize));
+        Assert.assertTrue(bookmarksPage.contains(secondProductName, secondProductColor, secondProductSize));
+        Assert.assertTrue(bookmarksPage.contains(thirdProductName, thirdProductColor, thirdProductSize));
+        Assert.assertTrue(bookmarksPage.contains(fourthProductName, fourthProductColor, fourthProductSize));
+        Assert.assertTrue(bookmarksPage.contains(fifthProductName, fifthProductColor, fifthProductSize));
+
     }
 
     @After
     public void sweep() {
         BookmarksPage bookmarksPage = new BookmarksPage(driver);
-        bookmarksPage.deleteFirstBookmark().deleteFirstBookmark();
+
+        bookmarksPage.
+                deleteFirstBookmark().
+                deleteFirstBookmark().
+                deleteFirstBookmark().
+                deleteFirstBookmark().
+                deleteFirstBookmark();
     }
 
 }
