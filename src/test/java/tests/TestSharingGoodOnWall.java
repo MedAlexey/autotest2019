@@ -35,10 +35,10 @@ public class TestSharingGoodOnWall extends BaseTest{
         ProductPageFrame productPageFrame = new ProductPageFrame(driver);
         productPageFrame.shareNow();
         productPageFrame.close();
-        String NAME_BEFORE = goodsPageSearch.getProducts().get(random).getName();
+        String nameBefore = goodsPageSearch.getProducts().get(random).getName();
 
-        String NAME_AFTER = goodsPageSearch.openUserMainPage().openShareFromUserMainPage().getProductName();
-        Assert.assertEquals(NAME_AFTER, NAME_BEFORE);
+        String nameAfter = goodsPageSearch.openUserMainPage().openShareFromUserMainPage().getProductName();
+        Assert.assertEquals(nameBefore, nameAfter);
         System.out.println("Товары совпадают");
 
     }

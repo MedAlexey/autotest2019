@@ -35,16 +35,16 @@ public class TestSharingGoodInGroup extends BaseTest{
         int random = new Random().nextInt(10);
         List<GoodsPageWrapper> gp =  goodsPageSearch.getProducts();
         gp.get(random).openProduct().shareInGroup();
-        String NAME_BEFORE = goodsPageSearch.getProducts().get(random).getName();
+        String nameBefore = goodsPageSearch.getProducts().get(random).getName();
 
         ShareInGroupFrame shareInGroupFrame = new ShareInGroupFrame(driver);
         shareInGroupFrame.chooseGroup(GROUP_NAME);
         shareInGroupFrame.share();
         shareInGroupFrame.closeFrame();
 
-        String NAME_AFTER = goodsPageSearch.openUserMainPage().openGroups().openGroup(driver).
+        String nameAfter = goodsPageSearch.openUserMainPage().openGroups().openGroup(driver).
                 checkProductOnTheWall().getProductName();
-        Assert.assertEquals(NAME_BEFORE, NAME_AFTER);
+        Assert.assertEquals(nameBefore, nameAfter);
         System.out.println("Товары совпадают");
 
     }
