@@ -17,10 +17,18 @@ public class ShareWithTextFrame extends BasePage implements IShareFrame {
 
     @Override
     protected void check(WebDriver driver) {
-        driver.findElement(PORTLET_NAME);
-        driver.findElement(CLOSE_ICON);
-        driver.findElement(POSTING_SUBMIT_BUTTON);
-        driver.findElement(TEXT_HOLDER);
+        assertTrue(driver, 10, PORTLET_NAME,
+                "Не дождались загрузки имени фрейма",
+                "Имя фрейма загружено");
+        assertTrue(driver, 10, CLOSE_ICON,
+                "Кнопка \"закрыть\" не загрузилась",
+                "Кнопка \"закрыть\" загрузилась");
+        assertTrue(driver, 10, POSTING_SUBMIT_BUTTON,
+                "Кнопка \"поделиться\" не загрузилась",
+                "Кнопка \"поделиться\" загрузилась");
+        assertTrue(driver, 10, TEXT_HOLDER,
+                "Поле ввода текстане загрузилось",
+                "Поле ввода текста загрузилось");
     }
 
     @Override

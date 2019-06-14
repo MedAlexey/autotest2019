@@ -16,6 +16,7 @@ public class AddressFrame extends BasePage {
     private static final By INDEX_INPUT_NUMBER = By.xpath(".//*[@id='field_zipcode']");
     private static final By PHONE_NUMBER_INPUT_FIELD =By.xpath(".//*[@id='field_userPhone']");
     private static final By CLOSE_BUTTON = By.xpath(".//*[@id='nohook_modal_close']");
+    private static final By FRAME_IS_CLOSED = By.xpath(".//*[@id='hook_Block_PopLayer' and @style='display: none;']");
 
     public AddressFrame(WebDriver driver) {
         super(driver);
@@ -69,46 +70,50 @@ public class AddressFrame extends BasePage {
     // закрыть окно
     public void close() {
         click(CLOSE_BUTTON);
+        // ждём закрытия фрейма
+        assertTrue(driver, 10, FRAME_IS_CLOSED, "Не дождались закрытия фрейма", "Фрейм закрылся");
     }
+
 
     // сохранить данные
     public DeliveryAddressPage save() {
         click(SAVE_BUTTON);
+        assertTrue(driver, 10, FRAME_IS_CLOSED, "Не дождались закрытия фрейма", "Фрейм закрыт");
         return new DeliveryAddressPage(driver);
     }
 
     @Override
     protected void check(WebDriver driver) {
-        Assert.assertTrue( "Не дождались кнопки сохранения",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(SAVE_BUTTON)));
+        assertTrue(driver, 3, SAVE_BUTTON,
+                "Не дождались кнопки сохранения",
+                "Кнопка сохранения загрузилась");
 
-        Assert.assertTrue( "Не дождались поля ввода ФИО",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(USER_NAME_INPUT_FIELD)));
+        assertTrue(driver, 3, USER_NAME_INPUT_FIELD,
+                "Не дождались поля ввода ФИО",
+                "Поле ввода ФИО загружено");
 
-        Assert.assertTrue( "Не дождались поля ввода населённого пункта",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(SETTLEMENT_INPUT_FIELD)));
+        assertTrue(driver, 3, SETTLEMENT_INPUT_FIELD,
+                "Не дождались поля ввода населённого пункта",
+                "Полеввода населённого пункта загружено");
 
-        Assert.assertTrue( "Не дождались кнопки созданиия новой группы",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(HOUSE_NUMBER_INPUT_FIELD)));
+        assertTrue(driver, 3, HOUSE_NUMBER_INPUT_FIELD,
+                "Не дождались кнопки созданиия новой группы",
+                "Кнопка создания новой группы загружена");
 
-        Assert.assertTrue( "Не дождались поля ввода номера квартиры/офиса",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(APARTMENT_INPUT_NUMBER)));
+        assertTrue(driver, 3, APARTMENT_INPUT_NUMBER,
+                "Не дождались поля ввода номера квартиры/офиса",
+                "Поле ввода номера квартиры/офиса загружено");
 
-        Assert.assertTrue( "Не дождались поля ввода индекса",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(INDEX_INPUT_NUMBER)));
+        assertTrue(driver, 3, INDEX_INPUT_NUMBER,
+                "Не дождались поля ввода индекса",
+                "Поле ввода индекса загружено");
 
-        Assert.assertTrue( "Не дождались поля ввода номера телефона",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(PHONE_NUMBER_INPUT_FIELD)));
+        assertTrue(driver, 3, PHONE_NUMBER_INPUT_FIELD,
+                "Не дождались поля ввода номера телефона",
+                "Поле ввода номера телефона загружено");
 
-        Assert.assertTrue( "Не дождались кнопки закрытия фрейма",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(CLOSE_BUTTON)));
+        assertTrue(driver, 3, CLOSE_BUTTON,
+                "Не дождались кнопки закрытия фрейма",
+                "Кнопка закрытия фрейма загружена");
     }
 }
