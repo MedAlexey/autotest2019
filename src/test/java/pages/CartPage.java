@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import wrappers.CartPageTransformer;
 import wrappers.CartPageWrapper;
+import wrappers.GoodsPageWrapper;
 
 import java.util.List;
 
@@ -27,6 +28,22 @@ public class CartPage extends BasePage {
     public CartPage deleteFirstCart(){
         click(DELETE_BUTTON);
         return new CartPage(driver);
+    }
+
+    public boolean contains(String expectedName, String expectedNumber, String expectedSize, String expectedColor) {
+
+        for (CartPageWrapper element: getWrapCart()) {
+
+
+            if (element.getName().equals(expectedName) &&
+                    element.getNumber().equals(expectedNumber) &&
+                    element.getColor().equals(expectedColor) &&
+                    element.getSize().equals(expectedSize)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override

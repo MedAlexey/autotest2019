@@ -11,6 +11,7 @@ public abstract class BaseTest {
 
     BaseTest() {
         setUpDriver();
+        driver.manage().window().maximize();
     }
 
     private void setUpDriver() {

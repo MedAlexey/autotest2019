@@ -26,8 +26,6 @@ public class TestAddingNewAddress extends BaseTest {
 
     @Test
     public void addingNewAddress() {
-        // делаем окно на полный экран
-        driver.manage().window().maximize();
 
         // логинимся и  переходим в адреса доставки
         DeliveryAddressPage deliveryAddressPage = new LoginPage(driver).

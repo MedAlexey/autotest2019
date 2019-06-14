@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import wrappers.BookmarksPageWrapper;
 
 import java.util.List;
@@ -13,6 +14,9 @@ public class BookmarksPage extends BasePage {
 
     private static final By BOOKMARKS_CARD = By.xpath(".//*[@class='mall-item __separator-basket __basket __flex']");
     private static final By DELETE_BUTTON = By.xpath(".//*[text()='Удалить']");
+    private static final By CART = By.xpath(".//*[@class='tico_txt' and contains(text(),'Корзина')]");
+    private static final By MY_ADDRESSES = By.xpath(".//*[@class='tico_txt' and contains(text(),'Адреса доставки')]");
+
 
     public BookmarksPage(WebDriver driver) {
         super(driver);
@@ -31,15 +35,17 @@ public class BookmarksPage extends BasePage {
     }
 
 
-    public boolean contains(String expectedName,
-                             String expectedColor,
-                             String expectedSize) {
+    // обновить страницу
+    public BookmarksPage refresh() {
+        new EventFiringWebDriver(driver).navigate().refresh();
+        return new BookmarksPage(driver);
+    }
+
+    public boolean contains(String expectedName) {
 
         for (BookmarksPageWrapper bookmark: getWrapBookmarks()) {
-            if ( (bookmark.getColor().equals(expectedColor)) &&
-                    (bookmark.getName().equals(expectedName)) &&
-                    (bookmark.getSize().equals(expectedSize))
-            ) {
+
+            if (bookmark.getName().equals(expectedName)) {
                 return true;
             }
         }
@@ -50,6 +56,7 @@ public class BookmarksPage extends BasePage {
 
     @Override
     protected void check(WebDriver driver) {
-        assertTrue(driver,3,DELETE_BUTTON,"Кнопка удалить не найдена","Кнопка удалить загруженна");
+        //assertTrue(driver,3, CART, "Корзина не загрузилась", "Корзина загрузилась");
+        //assertTrue(driver,3,MY_ADDRESSES,"Адресс не загрузился", "Адресс загрузился");
     }
 }
