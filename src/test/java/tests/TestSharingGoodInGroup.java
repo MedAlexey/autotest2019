@@ -32,10 +32,10 @@ public class TestSharingGoodInGroup extends BaseTest{
         GoodsPage goodsPage = userMainPage.openGoodsPage();
         GoodsPageSearch goodsPageSearch = goodsPage.writeSearchQuery("Product");
 
-        int RANDOM = new Random().nextInt(10);
+        int random = new Random().nextInt(10);
         List<GoodsPageWrapper> gp =  goodsPageSearch.getProducts();
-        gp.get(RANDOM).openProduct().shareInGroup();
-        String NAME_BEFORE = goodsPageSearch.getProducts().get(RANDOM).getName();
+        gp.get(random).openProduct().shareInGroup();
+        String NAME_BEFORE = goodsPageSearch.getProducts().get(random).getName();
 
         ShareInGroupFrame shareInGroupFrame = new ShareInGroupFrame(driver);
         shareInGroupFrame.chooseGroup(GROUP_NAME);

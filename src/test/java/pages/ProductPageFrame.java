@@ -168,7 +168,6 @@ public class ProductPageFrame extends BasePage implements IProductPage {
     public void shareNow() {
         click(SHARE_BUTTON);
         click(SHARE_NOW_BUTTON);
-        close();
     }
 
 

@@ -29,13 +29,16 @@ public class TestSharingGoodOnWall extends BaseTest{
         GoodsPage goodsPage = userMainPage.openGoodsPage();
         GoodsPageSearch goodsPageSearch = goodsPage.writeSearchQuery("Product");
 
-        int RANDOM = new Random().nextInt(10);
+        int random = new Random().nextInt(20);
         List<GoodsPageWrapper> gp =  goodsPageSearch.getProducts();
-        gp.get(RANDOM).openProduct().shareNow();
-        String NAME_BEFORE = goodsPageSearch.getProducts().get(RANDOM).getName();
+        gp.get(random).openProduct();
+        ProductPageFrame productPageFrame = new ProductPageFrame(driver);
+        productPageFrame.shareNow();
+        productPageFrame.close();
+        String NAME_BEFORE = goodsPageSearch.getProducts().get(random).getName();
 
         String NAME_AFTER = goodsPageSearch.openUserMainPage().openShareFromUserMainPage().getProductName();
-        Assert.assertTrue(NAME_AFTER.contains(NAME_BEFORE));
+        Assert.assertEquals(NAME_AFTER, NAME_BEFORE);
         System.out.println("Товары совпадают");
 
     }
