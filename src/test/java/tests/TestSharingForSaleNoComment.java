@@ -34,17 +34,17 @@ public class TestSharingForSaleNoComment extends BaseTest{
         gp.get(random).openProduct();
         ProductPageFrame productPageFrame = new ProductPageFrame(driver);
         productPageFrame.isFivePercentDiscountPresent();
-      //  int before = price1;
+        int before = productPageFrame.getPrice();
         productPageFrame.getFivePercentDiscount().share();
         productPageFrame.refresh();
-       // int after = price2;
-       // Assert.assertTrue(before > after);
+        int after = productPageFrame.getPrice();
+        Assert.assertTrue(before > after);
         System.out.println("Скидка получена");
 
     }
 
-//    @After
-//    public void out(){
-//        driver.quit();
-//    }
+    @After
+    public void out(){
+        driver.quit();
+    }
 }
