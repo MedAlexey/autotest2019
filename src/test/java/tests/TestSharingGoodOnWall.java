@@ -2,7 +2,6 @@ package tests;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import pages.*;
 import wrappers.GoodsPageWrapper;
@@ -10,19 +9,17 @@ import wrappers.GoodsPageWrapper;
 import java.util.List;
 import java.util.Random;
 
-public class TestSharingGoodInGroup extends BaseTest{
+public class TestSharingGoodOnWall extends BaseTest{
 
-    /*
+   /*
     * логинимся
     * переходим в товары-> переходим в товар (рандомный)
-    * делимся в группе
-    * проверяем пост в группе
+    * делимся на стене
+    * проверяем правильность отображения на стене
     */
 
-    String GROUP_NAME = "Group";
-
     @Test
-    public void sharingGoodInGroup(){
+    public void sharingGoodOnWall(){
 
         driver.manage().window().maximize();
         LoginPage loginPage = new LoginPage(driver);
@@ -34,17 +31,11 @@ public class TestSharingGoodInGroup extends BaseTest{
 
         int RANDOM = new Random().nextInt(10);
         List<GoodsPageWrapper> gp =  goodsPageSearch.getProducts();
-        gp.get(RANDOM).openProduct().shareInGroup();
+        gp.get(RANDOM).openProduct().shareNow();
         String NAME_BEFORE = goodsPageSearch.getProducts().get(RANDOM).getName();
 
-        ShareInGroupFrame shareInGroupFrame = new ShareInGroupFrame(driver);
-        shareInGroupFrame.chooseGroup(GROUP_NAME);
-        shareInGroupFrame.share();
-        shareInGroupFrame.closeFrame();
-
-        String NAME_AFTER = goodsPageSearch.openUserMainPage().openGroups().openGroup(driver).
-                checkProductOnTheWall().getProductName();
-        Assert.assertEquals(NAME_BEFORE, NAME_AFTER);
+        String NAME_AFTER = goodsPageSearch.openUserMainPage().openShareFromUserMainPage().getProductName();
+        Assert.assertTrue(NAME_AFTER.contains(NAME_BEFORE));
         System.out.println("Товары совпадают");
 
     }
@@ -53,5 +44,4 @@ public class TestSharingGoodInGroup extends BaseTest{
     public void out(){
         driver.quit();
     }
-
 }
