@@ -7,7 +7,7 @@ public class SaleFrame extends BasePage {
 
     private static final By TEXT_HOLDER =
             By.xpath(".//*[@class='posting_itx emoji-tx h-mod js-ok-e js-posting-itx ok-posting-handler']");
-    private static final By SHARE = By.xpath(".//*[@class='posting_f_ac' and contains(text(), 'Поделиться')]");
+    private static final By SHARE = By.xpath(".//*[@class='posting_submit button-pro' and contains(text(), 'Поделиться')]");
 
     public SaleFrame(WebDriver driver) {
         super(driver);

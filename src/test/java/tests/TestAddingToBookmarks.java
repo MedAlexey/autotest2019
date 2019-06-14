@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import pages.*;
 import wrappers.BookmarksPageWrapper;
 import wrappers.GoodsPageWrapper;
@@ -59,7 +61,8 @@ public class TestAddingToBookmarks extends BaseTest {
         fifthProduct.addToBookmarks();
         fifthProduct.close();
 
-        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,-1000);");
+        //((JavascriptExecutor)driver).executeScript("window.scrollBy(0,-1000);");
+        new Actions(driver).sendKeys(Keys.PAGE_UP).build().perform();
 
         // переходим в закладки
         BookmarksPage bookmarksPage = goodsPage.openMyOrders().openBookmarks();

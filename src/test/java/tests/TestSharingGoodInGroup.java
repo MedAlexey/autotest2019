@@ -19,7 +19,7 @@ public class TestSharingGoodInGroup extends BaseTest{
     * проверяем пост в группе
     */
 
-    String GROUP_NAME = "Group";
+    String GROUP_NAME = "products test";
 
     @Test
     public void sharingGoodInGroup(){
