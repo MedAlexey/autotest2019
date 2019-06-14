@@ -33,6 +33,8 @@ public class ProductPageFrame extends ProductPage{
     }
 
 
+
+
     // добавление товара в закладки
     public void addToBookmarks() {
         click(ADD_TO_BOOKMARKS_BUTTON);

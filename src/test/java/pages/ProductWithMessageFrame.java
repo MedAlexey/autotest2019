@@ -11,7 +11,7 @@ public class ProductWithMessageFrame extends BasePage {
 
     // получить текст комментария
     public String getCommentText(){
-        String com = driver.findElement(By.cssSelector(".//*[@class='media-text_cnt']/*")).getText();
+        String com = driver.findElement(By.xpath(".//*[@class='media-text_cnt']/*")).getText();
         return com;
     }
 
