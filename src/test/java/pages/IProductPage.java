@@ -28,7 +28,7 @@ public interface IProductPage {
     int getNumberOfColors();
 
     // поделиться в группе
-    ShareInGroupFrame shareInGroup();
+    void shareInGroup();
 
     // поделиться с текстом
     ShareWithTextFrame shareWithText();
@@ -40,7 +40,7 @@ public interface IProductPage {
     ShareWithMessageFrame shareInMessage();
 
     // проверить наличие кнопки "Получить скидку 5%"
-    FivePercentDiscount checkFivePercentDiscount();
+    boolean isFivePercentDiscountPresent();
 
     // обновить страницу
     ProductPage refresh();

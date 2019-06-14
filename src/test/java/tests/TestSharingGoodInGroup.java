@@ -13,15 +13,13 @@ import java.util.Random;
 public class TestSharingGoodInGroup extends BaseTest{
     String GROUP_NAME = "Group";
 
-    @Before
-    public void login(){
+    @Test
+    public void sharingGoodInGroup(){
+
         driver.manage().window().maximize();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(config.getLogin(), config.getPassword());
-    }
 
-    @Test
-    public void sharingGoodInGroup(){
         UserMainPage userMainPage = new UserMainPage(driver);
         GoodsPage goodsPage = userMainPage.openGoodsPage();
         GoodsPageSearch goodsPageSearch = goodsPage.writeSearchQuery("Product");
@@ -41,7 +39,6 @@ public class TestSharingGoodInGroup extends BaseTest{
         Assert.assertEquals(NAME_BEFORE, NAME_AFTER);
         System.out.println("Товары совпадают");
 
-        // нужна зачистка?
     }
 
     @After
