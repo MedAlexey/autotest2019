@@ -33,6 +33,40 @@ public class ProductPageFrame extends ProductPage{
     }
 
 
+    private void clickShareButton() {
+        click(SHARE_BUTTON);
+    }
+
+    // нажать на "дополнить своим текстом"
+    public ShareWithTextFrame shareWithText() {
+        this.clickShareButton();
+        click(SHARE_WITH_FEED);
+        return new ShareWithTextFrame(driver);
+    }
+
+
+    // нажать на "опубликовать в группе"
+    public void shareInGroup() {
+        this.clickShareButton();
+        click(SHARE_IN_GROUP);
+    }
+
+
+    // нажать на "поделиться сейчас"
+    public void shareNow() {
+        this.clickShareButton();
+        click(SHARE_NOW_BUTTON);
+    }
+
+
+    // нажать на "отправить сообщением"
+    public ShareWithMessageFrame shareInMessage() {
+        this.clickShareButton();
+        click(SHARE_WITH_MESSAGE);
+        return new ShareWithMessageFrame(driver);
+    }
+
+
     // добавление товара в закладки
     public void addToBookmarks() {
         click(ADD_TO_BOOKMARKS_BUTTON);

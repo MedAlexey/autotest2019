@@ -18,10 +18,10 @@ public class ProductPage extends BasePage {
     private static final By BUY_BUTTON = By.className("js-mall-card-button-buy");
     private static final By MALL_CARD = By.className("mall-card_section");
     private static final By SHARE_BUTTON = By.xpath(".//*[@data-type='RESHARE']");
-    private static final By SHARE_NOW_BUTTON = By.xpath(".//*[@data-l='t,now']");
-    private static final By SHARE_IN_GROUP = By.xpath(".//*[@data-l='t,group']");
-    private static final By SHARE_WITH_FEED = By.xpath(".//*[@data-l='t,feed']");
-    private static final By SHARE_WITH_MESSAGE = By.xpath(".//*[@data-l='t,msg']");
+    static final By SHARE_NOW_BUTTON = By.xpath(".//*[@data-l='t,now']");
+    static final By SHARE_IN_GROUP = By.xpath(".//*[@data-l='t,group']");
+    static final By SHARE_WITH_FEED = By.xpath(".//*[@data-l='t,feed']");
+    static final By SHARE_WITH_MESSAGE = By.xpath(".//*[@data-l='t,msg']");
     private static final By INCREASE_QUANTITY_BUTTON = By.xpath(".//*[@title='Добавить' and @type='button' and contains(text(),'+')]");
     private static final By DECREASE_QUANTITY_BUTTON = By.xpath(".//*[@title='Убрать' and @type='button' and contains(text(),'–')]");
     // поле с текущим цветом товара
@@ -130,9 +130,13 @@ public class ProductPage extends BasePage {
     }
 
 
+    private void clickShareButton() {
+        click(SHARE_BUTTON);
+    }
+
     // нажать на "дополнить своим текстом"
     public ShareWithTextFrame shareWithText() {
-        click(SHARE_BUTTON);
+        this.clickShareButton();
         click(SHARE_WITH_FEED);
         return new ShareWithTextFrame(driver);
     }
@@ -140,21 +144,21 @@ public class ProductPage extends BasePage {
 
     // нажать на "опубликовать в группе"
     public void shareInGroup() {
-        click(SHARE_BUTTON);
+        this.clickShareButton();
         click(SHARE_IN_GROUP);
     }
 
 
     // нажать на "поделиться сейчас"
     public void shareNow() {
-        click(SHARE_BUTTON);
+        this.clickShareButton();
         click(SHARE_NOW_BUTTON);
     }
 
 
     // нажать на "отправить сообщением"
     public ShareWithMessageFrame shareInMessage() {
-        click(SHARE_BUTTON);
+        this.clickShareButton();
         click(SHARE_WITH_MESSAGE);
         return new ShareWithMessageFrame(driver);
     }
