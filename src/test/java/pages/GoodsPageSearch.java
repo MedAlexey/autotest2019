@@ -1,7 +1,9 @@
 package pages;
 
+import net.bytebuddy.asm.Advice;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -21,8 +23,10 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
     private static final By SORT = By.xpath(".//*[@id='mallsortby']");
     private static final By CHEAP = By.xpath(".//*[@value='PRICE_ASC']");
     private static final By EXPENSIVE = By.xpath(".//*[@value='PRICE_DSC']");
-    private static final By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[79]");
+    private static final By FOR_WAIT = By.xpath(".//*[@class='ugrid_cnt']/div[10]");
     private static final By SEARCH_INPUT = By.xpath(".//*[@name='query']");
+    private static final By MIN_PRICE = By.xpath(".//*[@name='minPrice']");
+    private static final By MAX_PRICE = By.xpath(".//*[@name='maxPrice']");
 
     public GoodsPageSearch(WebDriver driver) {
         super(driver);
@@ -51,7 +55,7 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(EXPENSIVE)));
 
-        Assert.assertTrue("Не дождались последнего товара из списка",
+       Assert.assertTrue("Не дождались карду",
                 new WebDriverWait(driver, 10).
                         until((ExpectedCondition<Boolean>) d -> isElementPresent(FOR_WAIT)));
     }
@@ -97,6 +101,40 @@ public class GoodsPageSearch extends BasePage implements IGoodsPage{
         for (int i = 0; i < productsList.size() - 1; i++) {
             if (Integer.parseInt(productsList.get(i).getPrice().replaceAll("\\s+","")) <
                     Integer.parseInt(productsList.get(i + 1).getPrice().replaceAll("\\s+",""))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Вводит минимальную и максимальную цену
+    public GoodsPageSearch setMinAndMaxPrice(String minPrice, String maxPrice){
+        setMinPrice(minPrice);
+        setMaxPrice(maxPrice);
+        try {
+            Thread.sleep(1000);                 //тут без вариантов
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        return new GoodsPageSearch(driver);
+    }
+
+    //вводит минимальную цену
+    public GoodsPageSearch setMinPrice(String minPrice){
+        sendKeys(MIN_PRICE, minPrice);
+        return new GoodsPageSearch(driver);
+    }
+
+    //вводит максимальную цену
+    public GoodsPageSearch setMaxPrice(String maxPrice){
+        sendKeys(MAX_PRICE, maxPrice);
+        return new GoodsPageSearch(driver);
+    }
+
+    public boolean isGoodPrice(int minPrice,int maxPrice, List<GoodsPageWrapper> productList){
+        for (GoodsPageWrapper card : productList){
+            if (Integer.parseInt(card.getPrice().replaceAll("\\s+","")) < minPrice ||
+            Integer.parseInt(card.getPrice().replaceAll("\\s+","")) > maxPrice){
                 return false;
             }
         }
