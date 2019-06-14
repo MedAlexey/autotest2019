@@ -1,11 +1,8 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import wrappers.AddressesPageTransformer;
 import wrappers.AddressesPageWrapper;
 
@@ -42,12 +39,42 @@ public class DeliveryAddressPage extends BasePage {
         return AddressesPageTransformer.wrapAddresses(elements, driver);
     }
 
+    // поиск нужного адреса среди имеющихся
+    public boolean addressIsCorrect(String expName,
+                                    String expPhoneNumber,
+                                    String expIndex,
+                                    String expApartmentNumber,
+                                    String expHouseNumber,
+                                    String expSettlement,
+                                    List<AddressesPageWrapper> addresses) {
+
+        for (AddressesPageWrapper address: addresses) {
+            String curName = address.getName();
+            String curPhoneNumber = address.getPhone();
+            String curIndex = address.getAddress().split(", ")[4];
+            String curApartmentNumber = address.getAddress().split(", ")[3];
+            String curHouseNumber = address.getAddress().split(", ")[2];
+            String curSettlement = address.getAddress().split(", ")[1];
+
+            if (curName.equals(expName) &&
+                    curPhoneNumber.equals("+7" + expPhoneNumber) &&
+                    curIndex.equals(expIndex) &&
+                    curApartmentNumber.equals(expApartmentNumber) &&
+                    curHouseNumber.equals(expHouseNumber) &&
+                    curSettlement.equals(expSettlement)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // проверка на наличия кнопок
     @Override
     protected void check(WebDriver driver) {
+        assertTrue(driver, 10, ADD_ADDRESS,
+                "Не дождались кнопки 'Добавить адрес'",
+                "Кнопка 'Добавить адрес' загружена");
 
-        Assert.assertTrue("Не дождались кнопки 'Добавить адрес'",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(ADD_ADDRESS)));
     }
 }

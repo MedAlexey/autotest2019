@@ -47,20 +47,21 @@ public class ShareWithMessageFrame extends BasePage implements IShareFrame {
 
     @Override
     protected void check(WebDriver driver) {
-        Assert.assertTrue( "Не дождались названия фрейма",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(PORTLET_NAME)));
+        assertTrue(driver, 10, PORTLET_NAME,
+                "Не дождались названия фрейма",
+                "Название фрейма загружено");
 
-        Assert.assertTrue( "Не дождались кнопки сзакрытия фрейма",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(CLOSE_ICON)));
+        assertTrue(driver, 10, CLOSE_ICON,
+                "Не дождались кнопки закрытия фрейма",
+                "Кнопка закрытия фрейма загружена");
 
-        Assert.assertTrue( "Не дождались кнопки \"поделиться\"",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(POSTING_SUBMIT_BUTTON)));
+        assertTrue(driver, 10, POSTING_SUBMIT_BUTTON,
+                "Не дождались кнопки \"поделиться\"",
+                "Кнопка \"поделиться\" загружена");
 
-        Assert.assertTrue( "Не дождались поля ввода комментария",
-                new WebDriverWait(driver, 10).
-                        until((ExpectedCondition<Boolean>) d -> isElementPresent(TEXT_HOLDER)));
+        assertTrue(driver, 10, TEXT_HOLDER,
+                "Не дождались поля ввода комментария",
+                "Поле ввода комментария загружено");
+
     }
 }

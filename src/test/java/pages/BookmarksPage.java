@@ -11,7 +11,6 @@ import static wrappers.BookmarksPageTransformer.wrapBookmarks;
 
 public class BookmarksPage extends BasePage {
 
-    private static final By FOR_WAIT = By.xpath(".//div[5] [@class='mall-item __separator-basket __basket __flex'] ");
     private static final By BOOKMARKS_CARD = By.xpath(".//*[@class='mall-item __separator-basket __basket __flex']");
     private static final By DELETE_BUTTON = By.xpath(".//*[text()='Удалить']");
 
@@ -31,9 +30,26 @@ public class BookmarksPage extends BasePage {
         return new BookmarksPage(driver);
     }
 
+
+    public boolean contains(String expectedName,
+                             String expectedColor,
+                             String expectedSize) {
+
+        for (BookmarksPageWrapper bookmark: getWrapBookmarks()) {
+            if ( (bookmark.getColor().equals(expectedColor)) &&
+                    (bookmark.getName().equals(expectedName)) &&
+                    (bookmark.getSize().equals(expectedSize))
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     @Override
     protected void check(WebDriver driver) {
-        assertTrue(driver,3,FOR_WAIT,"Не дождались всех кард закладок", "Карды загруженны");
         assertTrue(driver,3,DELETE_BUTTON,"Кнопка удалить не найдена","Кнопка удалить загруженна");
     }
 }
