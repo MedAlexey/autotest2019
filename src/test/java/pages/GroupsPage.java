@@ -3,25 +3,29 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GroupsPage extends BasePage {
 
     private static final By GROUPS_MODERATION = By.xpath(".//*[@class='lp floatRight' and contains(text(), 'Модерирую')]");
-    private static final By GROUP = By.xpath(".//*[@class='stub-img stub-group-interest-128 stub-img__128']");
+   // private static final By GROUP = By.xpath(".//*[@class='stub-img stub-group-interest-128 stub-img__128']");
 
     public GroupsPage(WebDriver driver) {
         super(driver);
     }
 
     // открыть свою группу
-    public GroupPage openGroup(WebDriver driver) {
+    public FixGroupPage openGroupModeration(WebDriver driver) {
         click(GROUPS_MODERATION);
-        click(GROUP);
-
-        return new GroupPage(driver);
+        return new FixGroupPage(driver);
     }
+
+  /*  public GroupPage openGroup(WebDriver driver){
+        click(GROUP);
+        return new GroupPage(driver);
+    }*/
 
     // проверка наличия и видимости кнопок
     @Override
