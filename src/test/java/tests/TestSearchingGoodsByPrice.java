@@ -29,9 +29,8 @@ public class TestSearchingGoodsByPrice extends BaseTest {
         GoodsPageSearch goodsPageSearch = loginPage.login(config.getLogin(), config.getPassword())
                 .openGoodsPage()
                 .writeSearchQuery(SEARCH_TEXT)
-                .setMinAndMaxPrice(MIN_PRICE,MAX_PRICE);
-
-
+                .setMinAndMaxPrice(MIN_PRICE,MAX_PRICE)
+                ;
         List<GoodsPageWrapper> productsList = goodsPageSearch.getProducts();
 
         Assert.assertTrue("Цена товаров не соответствует диапозну",

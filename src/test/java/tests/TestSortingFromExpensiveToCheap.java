@@ -28,8 +28,8 @@ public class TestSortingFromExpensiveToCheap extends BaseTest {
         GoodsPageSearch goodsPageSearch = loginPage.login(config.getLogin(), config.getPassword())
                 .openGoodsPage()
                 .writeSearchQuery(SEARCH_TEXT)
-                .chooseSortExpensive();
-
+                .chooseSortExpensive()
+                ;
         List<GoodsPageWrapper> productsList = goodsPageSearch.getProducts();
 
         Assert.assertTrue("Сортировка не корректна", goodsPageSearch.isExpensiveSorted(productsList));
