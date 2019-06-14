@@ -3,6 +3,7 @@ package tests;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import pages.*;
 
 
@@ -47,6 +48,7 @@ public class TestAddingNewAddress extends BaseTest {
         );
         addressFrame.save();
 
+        new EventFiringWebDriver(driver).navigate().refresh();
 
         // проверяем адрес
         Assert.assertTrue(deliveryAddressPage.addressIsCorrect(

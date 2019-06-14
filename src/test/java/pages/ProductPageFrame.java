@@ -20,6 +20,7 @@ public class ProductPageFrame extends ProductPage{
     // кнопка "закрыть"
     private static final By CLOSE_BUTTON = By.xpath(".//*[@class='ic modal-new_close_ico']");
     private static final By FRAME_IS_CLOSED = By.xpath(".//*[@id='hook_Block_PopLayer' and @style='display: none;']");
+    private static final By SALE = By.xpath(".//*[@class='mall-card_section' and contains(text(), 'Получить скидку 5%')]");
 
 
     public ProductPageFrame(WebDriver driver) {

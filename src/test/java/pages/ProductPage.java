@@ -32,6 +32,7 @@ public class ProductPage extends BasePage {
     private static final By PRODUCT_SIZE_WORD = By.xpath(".//*[@class='mall-title __bold' and contains(text(), 'Размер:')]");
     // юнит, отвечающий за определённый размер товара
     private static final By PRODUCT_SIZE_ITEM = By.xpath(".//*[@class='mall-card_label-el __size']");
+    private static final By SALE = By.xpath(".//*[@class='mall-card_section' and contains(text(), 'Получить скидку 5%')]");
 
 
     public ProductPage(WebDriver driver) {
@@ -138,10 +139,9 @@ public class ProductPage extends BasePage {
 
 
     // нажать на "опубликовать в группе"
-    public ShareInGroupFrame shareInGroup() {
+    public void shareInGroup() {
         click(SHARE_BUTTON);
         click(SHARE_IN_GROUP);
-        return new ShareInGroupFrame(driver);
     }
 
 
@@ -161,8 +161,8 @@ public class ProductPage extends BasePage {
 
 
     // проверить наличие кнопки "получить скидку 5%"
-    public FivePercentDiscount checkFivePercentDiscount() {
-        return new FivePercentDiscount();
+    public boolean isFivePercentDiscountPresent() {
+        return isElementPresent(SALE);
     }
 
 

@@ -2,7 +2,6 @@ package tests;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import pages.*;
 import wrappers.GoodsPageWrapper;
@@ -10,19 +9,17 @@ import wrappers.GoodsPageWrapper;
 import java.util.List;
 import java.util.Random;
 
-public class TestSharingGoodInGroup extends BaseTest{
+public class TestSharingGoodOnWall extends BaseTest{
 
-    /*
+   /*
     * логинимся
     * переходим в товары-> переходим в товар (рандомный)
-    * делимся в группе
-    * проверяем пост в группе
+    * делимся на стене
+    * проверяем правильность отображения на стене
     */
 
-    String GROUP_NAME = "Group";
-
     @Test
-    public void sharingGoodInGroup(){
+    public void sharingGoodOnWall(){
 
         driver.manage().window().maximize();
         LoginPage loginPage = new LoginPage(driver);
@@ -32,18 +29,15 @@ public class TestSharingGoodInGroup extends BaseTest{
         GoodsPage goodsPage = userMainPage.openGoodsPage();
         GoodsPageSearch goodsPageSearch = goodsPage.writeSearchQuery("Product");
 
-        int random = new Random().nextInt(10);
+        int random = new Random().nextInt(20);
         List<GoodsPageWrapper> gp =  goodsPageSearch.getProducts();
-        gp.get(random).openProduct().shareInGroup();
+        gp.get(random).openProduct();
+        ProductPageFrame productPageFrame = new ProductPageFrame(driver);
+        productPageFrame.shareNow();
+        productPageFrame.close();
         String nameBefore = goodsPageSearch.getProducts().get(random).getName();
 
-        ShareInGroupFrame shareInGroupFrame = new ShareInGroupFrame(driver);
-        shareInGroupFrame.chooseGroup(GROUP_NAME);
-        shareInGroupFrame.share();
-        shareInGroupFrame.closeFrame();
-
-        String nameAfter = goodsPageSearch.openUserMainPage().openGroups().openGroup(driver).
-                checkProductOnTheWall().getProductName();
+        String nameAfter = goodsPageSearch.openUserMainPage().openShareFromUserMainPage().getProductName();
         Assert.assertEquals(nameBefore, nameAfter);
         System.out.println("Товары совпадают");
 
@@ -53,5 +47,4 @@ public class TestSharingGoodInGroup extends BaseTest{
     public void out(){
         driver.quit();
     }
-
 }
